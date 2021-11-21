@@ -3,4 +3,6 @@
     <string name="e_mail">E-mail</string>
     <string name="password">Jelszó</string>
     <string name="phone_number">Telefonszám</string>
+    <string name="nem_rendelkezik_fiokkal"><u>Nem rendelkezik még fiókkal? Regisztráljon!</u></string>
+    <string name="rendelkezik_fiokkal"><u>Már rendelkezem fiókkal!</u></string>
 </resources>

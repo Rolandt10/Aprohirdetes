@@ -21,6 +21,11 @@ class RegistrationActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
+        binding.textView3.setOnClickListener {
+            val intent = Intent(applicationContext, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.registerButton.setOnClickListener {
 
             var email = binding.emailAddress.text.toString()
