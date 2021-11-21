@@ -22,7 +22,9 @@ class MainActivity : AppCompatActivity() {
 
         var user : FirebaseUser? = firebaseAuth.currentUser
 
-        if (!user!!.isEmailVerified) {
+        if (user == null || user!!.isEmailVerified) {
+            binding.emailVerificationText.visibility = View.INVISIBLE
+        } else if (!user!!.isEmailVerified) {
             binding.emailVerificationText.visibility = View.VISIBLE
         }
     }
