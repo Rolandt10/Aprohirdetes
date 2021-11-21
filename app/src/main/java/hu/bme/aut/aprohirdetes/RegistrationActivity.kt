@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import hu.bme.aut.aprohirdetes.databinding.ActivityRegistrationBinding
 
 class RegistrationActivity : AppCompatActivity() {
@@ -28,9 +29,9 @@ class RegistrationActivity : AppCompatActivity() {
 
         binding.registerButton.setOnClickListener {
 
-            var email = binding.emailAddress.text.toString()
-            var password = binding.password.text.toString()
-            var phoneNumber = binding.phoneNumber.text.toString()
+            val email = binding.emailAddress.text.toString()
+            val password = binding.password.text.toString()
+            val phoneNumber = binding.phoneNumber.text.toString()
 
             if (email.isEmpty()) {
                 Toast.makeText(applicationContext, "Az e-mail cím megadása kötelező!", Toast.LENGTH_LONG).show()
@@ -42,6 +43,10 @@ class RegistrationActivity : AppCompatActivity() {
                 firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) {
                     task ->
                     if (task.isSuccessful) {
+
+                        val user : FirebaseUser? = firebaseAuth.currentUser
+                        user?.sendEmailVerification()
+
                         Toast.makeText(applicationContext, "Sikeres regisztráció!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(applicationContext, MainActivity::class.java)
                         startActivity(intent)
