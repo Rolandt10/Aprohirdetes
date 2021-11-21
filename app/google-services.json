@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1098930742109",
+    "firebase_url": "https://aprohirdetes-2a67e-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "aprohirdetes-2a67e",
+    "storage_bucket": "aprohirdetes-2a67e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098930742109:android:c6fde31ad42b0aef0b7eb4",
+        "android_client_info": {
+          "package_name": "hu.bme.aut.aprohirdetes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098930742109-5r3qlv7sqb5af378jeff9ns1bgscv5i8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg7msiyt7m9tO5TUwlmucTHv4hx4Gz3OA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098930742109-5r3qlv7sqb5af378jeff9ns1bgscv5i8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
