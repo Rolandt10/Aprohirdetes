@@ -5,4 +5,6 @@
     <string name="phone_number">Telefonszám</string>
     <string name="nem_rendelkezik_fiokkal"><u>Nem rendelkezik még fiókkal? Regisztráljon!</u></string>
     <string name="rendelkezik_fiokkal"><u>Már rendelkezem fiókkal!</u></string>
+    <string name="navigation_drawer_open">Navigáció megnyitása</string>
+    <string name="navigation_drawer_close">Navigáció bezárása</string>
 </resources>
