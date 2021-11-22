@@ -46,12 +46,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun updateNav() {
         navigationView = binding.navView
-
         firebaseAuth = FirebaseAuth.getInstance()
-        var user : FirebaseUser? = firebaseAuth.currentUser
-        Log.w("asd", (user == null).toString() + "----------------------------------------------------")
-        if (user != null) {
-            Log.w("asd", user.email.toString())
+        val firebaseUser = firebaseAuth.currentUser
+
+        if (firebaseUser != null) {
             navigationView.menu.findItem(R.id.nav_login).setVisible(false)
             navigationView.menu.findItem(R.id.nav_my_ads).setVisible(true)
             navigationView.menu.findItem(R.id.nav_logout).setVisible(true)
@@ -62,7 +60,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             navigationView.menu.findItem(R.id.nav_login).setVisible(true)
             navigationView.invalidate()
         }
-
         navigationView.setNavigationItemSelectedListener(this)
     }
 
@@ -84,9 +81,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 firebaseAuth.signOut()
                 updateNav()
             }
-
         }
-
         return true
     }
 }
