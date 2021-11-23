@@ -76,11 +76,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_login -> {
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LoginFragment()).commit()
             }
-
             R.id.nav_logout -> {
                 firebaseAuth.signOut()
                 updateNav()
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LoginFragment()).commit()
+            }
+            R.id.nav_ads -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, AdsFragment()).commit()
+            }
+
+            R.id.nav_my_ads -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, MyAdsFragment()).commit()
             }
         }
         return true
