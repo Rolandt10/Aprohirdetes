@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_logout -> {
                 firebaseAuth.signOut()
                 updateNav()
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LoginFragment()).commit()
             }
         }
         return true
