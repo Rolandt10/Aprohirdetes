@@ -46,6 +46,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     if (task.isSuccessful) {
                         Toast.makeText(activity, "Sikeres bejelentkezés!", Toast.LENGTH_SHORT).show()
                         (activity as MainActivity?)?.updateNav()
+                        (activity as MainActivity?)?.hideKeyboard()
                         (activity as MainActivity?)?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, AdsFragment())?.commitNow()
                     } else {
                         Toast.makeText(activity, "Sikertelen bejelentkezés!", Toast.LENGTH_SHORT).show()

@@ -1,9 +1,13 @@
 package hu.bme.aut.aprohirdetes
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.renderscript.ScriptGroup
 import android.util.Log
 import android.view.MenuItem
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat
@@ -61,6 +65,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             navigationView.invalidate()
         }
         navigationView.setNavigationItemSelectedListener(this)
+    }
+
+    fun hideKeyboard() {
+        this.currentFocus?.let { view ->
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
+    fun openNewAd() {
+        val intent = Intent(applicationContext, NewAdActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onBackPressed() {
