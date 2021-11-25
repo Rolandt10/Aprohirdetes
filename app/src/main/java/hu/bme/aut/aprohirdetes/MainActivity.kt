@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.renderscript.ScriptGroup
-import android.util.Log
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -14,8 +12,10 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import hu.bme.aut.aprohirdetes.databinding.ActivityMainBinding
+import hu.bme.aut.aprohirdetes.fragments.AdsFragment
+import hu.bme.aut.aprohirdetes.fragments.LoginFragment
+import hu.bme.aut.aprohirdetes.fragments.MyAdsFragment
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 

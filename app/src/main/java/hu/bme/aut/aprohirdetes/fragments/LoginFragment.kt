@@ -1,4 +1,4 @@
-package hu.bme.aut.aprohirdetes
+package hu.bme.aut.aprohirdetes.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import hu.bme.aut.aprohirdetes.MainActivity
+import hu.bme.aut.aprohirdetes.R
 import hu.bme.aut.aprohirdetes.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -47,7 +49,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         Toast.makeText(activity, "Sikeres bejelentkezés!", Toast.LENGTH_SHORT).show()
                         (activity as MainActivity?)?.updateNav()
                         (activity as MainActivity?)?.hideKeyboard()
-                        (activity as MainActivity?)?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, AdsFragment())?.commitNow()
+                        (activity as MainActivity?)?.supportFragmentManager?.beginTransaction()?.replace(
+                            R.id.fragment_container, AdsFragment())?.commitNow()
                     } else {
                         Toast.makeText(activity, "Sikertelen bejelentkezés!", Toast.LENGTH_SHORT).show()
                     }

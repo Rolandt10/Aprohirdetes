@@ -1,4 +1,4 @@
-package hu.bme.aut.aprohirdetes
+package hu.bme.aut.aprohirdetes.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import hu.bme.aut.aprohirdetes.R
 import hu.bme.aut.aprohirdetes.databinding.FragmentRegistrationBinding
 
 class RegistrationFragment : Fragment(R.layout.fragment_registration) {
