@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import hu.bme.aut.aprohirdetes.databinding.ActivityMainBinding
 import hu.bme.aut.aprohirdetes.databinding.ActivityNewAdBinding
 import hu.bme.aut.aprohirdetes.databinding.FragmentLoginBinding
@@ -31,8 +32,20 @@ class NewAdActivity : AppCompatActivity() {
             val description = binding.descriptionText.text.toString()
             val price = binding.priceNumber.text.toString()
             val city = binding.cityText.text.toString()
+            val category = binding.spinner.selectedItem.toString()
 
-            dao.addNewAd(title, description, price, city)
+            if (title.length < 3 && title.length > 100) {
+                Toast.makeText(applicationContext, "A cím hossza min. 3 és max. 100 karakter!", Toast.LENGTH_LONG)
+                    .show()
+            } else if (description.length < 10 && description.length > 500) {
+                Toast.makeText(applicationContext, "A leírás hossza min. 10 és max. 400 karakter!", Toast.LENGTH_LONG)
+            } else if (price.isEmpty()) {
+                Toast.makeText(applicationContext, "Adja meg az árat!", Toast.LENGTH_LONG)
+            } else if (city.isEmpty()) {
+                Toast.makeText(applicationContext, "Adja meg a települést!", Toast.LENGTH_LONG)
+            } else {
+                dao.addNewAd(title, description, price, city, category)
+            }
         }
     }
 }
