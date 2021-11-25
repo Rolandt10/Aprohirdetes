@@ -7,4 +7,17 @@
     <string name="rendelkezik_fiokkal"><u>Már rendelkezem fiókkal!</u></string>
     <string name="navigation_drawer_open">Navigáció megnyitása</string>
     <string name="navigation_drawer_close">Navigáció bezárása</string>
+    <string name="title">Cím</string>
+    <string name="description">Leírás</string>
+    <string name="city">Település</string>
+    <string name="price">Ár</string>
+
+    <string-array name="categories">
+        <item>Álláskeresés, állásajánlat</item>
+        <item>Műszaki cikkek</item>
+        <item>Sport, szabadidő</item>
+        <item>Ruházat</item>
+        <item>Üzlet, szolgáltatás</item>
+        <item>Otthon, háztartás</item>
+    </string-array>
 </resources>
