@@ -23,5 +23,16 @@ class NewAdActivity : AppCompatActivity() {
         val adapter = ArrayAdapter.createFromResource(applicationContext, R.array.categories, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
+
+        val dao = DAOAd()
+
+        binding.saveNewAdButton.setOnClickListener {
+            val title = binding.titleText.text.toString()
+            val description = binding.descriptionText.text.toString()
+            val price = binding.priceNumber.text.toString()
+            val city = binding.cityText.text.toString()
+
+            dao.addNewAd(title, description, price, city)
+        }
     }
 }
