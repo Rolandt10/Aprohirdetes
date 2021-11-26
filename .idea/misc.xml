@@ -8,7 +8,7 @@
         <entry key="app/src/main/res/layout/activity_new_ad.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_registration.xml" value="0.2788356442812881" />
         <entry key="app/src/main/res/layout/ad_item.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/fragment_ads.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_ads.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_my_ads.xml" value="0.31690456232578434" />
         <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.12447916666666667" />

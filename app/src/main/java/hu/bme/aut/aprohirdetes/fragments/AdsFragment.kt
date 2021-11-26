@@ -33,7 +33,13 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
     ): View? {
         binding = FragmentAdsBinding.inflate(inflater, container, false)
 
-        //swipeRefreshLayout = binding.swipeRefreshLayout
+        swipeRefreshLayout = binding.swipeRefreshLayout
+
+        swipeRefreshLayout.setOnRefreshListener {
+            loadData()
+            swipeRefreshLayout.isRefreshing = false
+        }
+
         recyclerView = binding.recyclerViewAds
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
@@ -50,6 +56,7 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
     fun loadData() {
         dao.getAds().addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                ads.clear()
                 for (ad in dataSnapshot.children) {
                     for (data in ad.children) {
                         val ad: Ad? = data.getValue(Ad::class.java)
@@ -57,7 +64,7 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
                         Log.w("TAG", ad.toString())
                     }
                 }
-                recyclerView.adapter = RecyclerViewAdapter(ads)
+                recyclerView.adapter?.notifyDataSetChanged()
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
