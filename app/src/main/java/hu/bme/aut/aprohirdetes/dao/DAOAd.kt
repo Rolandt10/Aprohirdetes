@@ -4,7 +4,8 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import hu.bme.aut.aprohirdetes.Ad
+import com.google.firebase.database.Query
+import hu.bme.aut.aprohirdetes.models.Ad
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Locale
@@ -31,5 +32,9 @@ class DAOAd {
                     Log.w("TAG", task.exception.toString())
                 }
         }
+    }
+
+    fun getAds(): Query {
+        return dbRef.orderByKey()
     }
 }

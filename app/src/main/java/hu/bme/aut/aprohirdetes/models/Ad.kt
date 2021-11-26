@@ -1,8 +1,6 @@
-package hu.bme.aut.aprohirdetes
+package hu.bme.aut.aprohirdetes.models
 
 import com.google.firebase.database.IgnoreExtraProperties
-import java.time.LocalDate
-import java.util.*
 
 @IgnoreExtraProperties
 data class Ad(val title: String? = null,
