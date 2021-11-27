@@ -37,24 +37,28 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
             val password = binding.password.text.toString()
             val phoneNumber = binding.phoneNumber.text.toString()
 
-            if (email.isEmpty()) {
-                Toast.makeText(activity, "Az e-mail cím megadása kötelező!", Toast.LENGTH_LONG).show()
-            } else if (password.isEmpty()) {
-                Toast.makeText(activity, "A jelszó megadása kötelező!", Toast.LENGTH_LONG).show()
-            } else if (phoneNumber.isEmpty()) {
-                Toast.makeText(activity, "A telefonszám megadása kötelező!", Toast.LENGTH_LONG).show()
-            } else {
-                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-                        task ->
-                    if (task.isSuccessful) {
+            when {
+                email.isEmpty() -> {
+                    binding.emailAddress.error = "Az e-mail cím megadása kötelező!"
+                }
+                password.isEmpty() -> {
+                    binding.password.error = "A jelszó megadása kötelező!"
+                }
+                phoneNumber.isEmpty() -> {
+                    binding.phoneNumber.error = "A telefonszám megadása kötelező!"
+                }
+                else -> {
+                    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
 
-                        val user : FirebaseUser? = firebaseAuth.currentUser
-                        user?.sendEmailVerification()
+                            val user : FirebaseUser? = firebaseAuth.currentUser
+                            user?.sendEmailVerification()
 
-                        Toast.makeText(activity, "Sikeres regisztráció!", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(activity, "A regisztráció sikertelen!", Toast.LENGTH_SHORT).show()
-                        Log.w("Reg", task.exception.toString())
+                            Toast.makeText(activity, "Sikeres regisztráció!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(activity, "A regisztráció sikertelen!", Toast.LENGTH_SHORT).show()
+                            Log.w("Reg", task.exception.toString())
+                        }
                     }
                 }
             }
