@@ -31,17 +31,22 @@ class NewAdActivity : AppCompatActivity() {
             val city = binding.cityText.text.toString()
             val category = binding.spinner.selectedItem.toString()
 
-            if (title.length < 3 && title.length > 100) {
-                Toast.makeText(applicationContext, "A cím hossza min. 3 és max. 100 karakter!", Toast.LENGTH_LONG)
-                    .show()
-            } else if (description.length < 10 && description.length > 500) {
-                Toast.makeText(applicationContext, "A leírás hossza min. 10 és max. 400 karakter!", Toast.LENGTH_LONG)
-            } else if (price.isEmpty()) {
-                Toast.makeText(applicationContext, "Adja meg az árat!", Toast.LENGTH_LONG)
-            } else if (city.isEmpty()) {
-                Toast.makeText(applicationContext, "Adja meg a települést!", Toast.LENGTH_LONG)
-            } else {
-                dao.addNewAd(title, description, price, city, category)
+            when {
+                title.length < 3 && title.length > 100 -> {
+                    binding.titleText.error = "A cím hossza min. 3 és max. 100 karakter!"
+                }
+                description.length < 10 && description.length > 500 -> {
+                    binding.descriptionText.error = "A leírás hossza min. 10 és max. 400 karakter!"
+                }
+                price.isEmpty() -> {
+                    binding.priceNumber.error = "Adja meg az árat!"
+                }
+                city.isEmpty() -> {
+                    binding.cityText.error = "Adja meg a települést!"
+                }
+                else -> {
+                    dao.addNewAd(title, description, price, city, category)
+                }
             }
         }
     }
