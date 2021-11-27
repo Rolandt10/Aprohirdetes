@@ -14,6 +14,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import hu.bme.aut.aprohirdetes.databinding.ActivityMainBinding
 import hu.bme.aut.aprohirdetes.fragments.AdsFragment
+import hu.bme.aut.aprohirdetes.fragments.FavouriteAdsFragment
 import hu.bme.aut.aprohirdetes.fragments.LoginFragment
 import hu.bme.aut.aprohirdetes.fragments.MyAdsFragment
 
@@ -107,6 +108,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             R.id.nav_my_ads -> {
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, MyAdsFragment()).commit()
+            }
+            R.id.nav_favourite_ads -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, FavouriteAdsFragment()).commit()
             }
         }
         return true
