@@ -35,9 +35,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
             when {
                 email.isEmpty() -> {
-                  binding.emailAddress.error = "Az e-mail cím megadása kötelező!"
+                    binding.emailAddress.requestFocus()
+                    binding.emailAddress.error = "Az e-mail cím megadása kötelező!"
                 }
                 password.isEmpty() -> {
+                    binding.password.requestFocus()
                     binding.password.error = "A jelszó megadása kötelező!"
                 }
                 else -> {

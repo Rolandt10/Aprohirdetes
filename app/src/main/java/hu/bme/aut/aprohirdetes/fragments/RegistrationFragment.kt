@@ -39,12 +39,15 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
             when {
                 email.isEmpty() -> {
+                    binding.emailAddress.requestFocus()
                     binding.emailAddress.error = "Az e-mail cím megadása kötelező!"
                 }
                 password.isEmpty() -> {
+                    binding.password.requestFocus()
                     binding.password.error = "A jelszó megadása kötelező!"
                 }
                 phoneNumber.isEmpty() -> {
+                    binding.phoneNumber.requestFocus()
                     binding.phoneNumber.error = "A telefonszám megadása kötelező!"
                 }
                 else -> {
