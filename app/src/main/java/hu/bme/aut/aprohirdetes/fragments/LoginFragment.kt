@@ -30,29 +30,27 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         binding.loginButton.setOnClickListener {
-            var email = binding.emailAddress.text.toString()
-            var password = binding.password.text.toString()
+            val email = binding.emailAddress.text.toString()
+            val password = binding.password.text.toString()
 
-            if (email.isEmpty()) {
-                Toast.makeText(
-                    activity,
-                    "Az e-mail cím megadása kötelező!",
-                    Toast.LENGTH_LONG
-                ).show()
-            } else if (password.isEmpty()) {
-                Toast.makeText(activity, "A jelszó megadása kötelező!", Toast.LENGTH_LONG)
-                    .show()
-            } else {
-                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                        task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(activity, "Sikeres bejelentkezés!", Toast.LENGTH_SHORT).show()
-                        (activity as MainActivity?)?.updateNav()
-                        (activity as MainActivity?)?.hideKeyboard()
-                        (activity as MainActivity?)?.supportFragmentManager?.beginTransaction()?.replace(
-                            R.id.fragment_container, AdsFragment())?.commitNow()
-                    } else {
-                        Toast.makeText(activity, "Sikertelen bejelentkezés!", Toast.LENGTH_SHORT).show()
+            when {
+                email.isEmpty() -> {
+                  binding.emailAddress.error = "Az e-mail cím megadása kötelező!"
+                }
+                password.isEmpty() -> {
+                    binding.password.error = "A jelszó megadása kötelező!"
+                }
+                else -> {
+                    firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(activity, "Sikeres bejelentkezés!", Toast.LENGTH_SHORT).show()
+                            (activity as MainActivity?)?.updateNav()
+                            (activity as MainActivity?)?.hideKeyboard()
+                            (activity as MainActivity?)?.supportFragmentManager?.beginTransaction()?.replace(
+                                R.id.fragment_container, AdsFragment())?.commitNow()
+                        } else {
+                            Toast.makeText(activity, "Sikertelen bejelentkezés!", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             }
