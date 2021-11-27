@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aprohirdetes">
         <activity
+            android:name=".AdActivity"
+            android:exported="true" />
+        <activity
             android:name=".NewAdActivity"
             android:exported="true" />
         <activity
@@ -19,7 +22,7 @@
             android:exported="true" />
         <activity
             android:name=".RegistrationActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
