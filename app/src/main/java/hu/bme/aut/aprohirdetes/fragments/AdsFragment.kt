@@ -1,7 +1,6 @@
 package hu.bme.aut.aprohirdetes.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,14 +60,13 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
                     for (data in ad.children) {
                         val ad: Ad? = data.getValue(Ad::class.java)
                         ads.add(ad)
-                        Log.w("TAG", ad.toString())
                     }
                 }
                 recyclerView.adapter?.notifyDataSetChanged()
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Log.w("TAG-E", databaseError.toString())
+
             }
         })
     }
