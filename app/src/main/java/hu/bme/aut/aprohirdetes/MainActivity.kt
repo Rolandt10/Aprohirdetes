@@ -50,8 +50,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }*/
     }
 
-
-
     fun updateNav() {
         navigationView = binding.navView
         firebaseAuth = FirebaseAuth.getInstance()
