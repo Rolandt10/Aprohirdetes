@@ -59,11 +59,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (firebaseUser != null) {
             navigationView.menu.findItem(R.id.nav_login).setVisible(false)
+            navigationView.menu.findItem(R.id.nav_favourite_ads).setVisible(true)
             navigationView.menu.findItem(R.id.nav_my_ads).setVisible(true)
             navigationView.menu.findItem(R.id.nav_logout).setVisible(true)
             navigationView.invalidate()
         } else {
             navigationView.menu.findItem(R.id.nav_logout).setVisible(false)
+            navigationView.menu.findItem(R.id.nav_favourite_ads).setVisible(false)
             navigationView.menu.findItem(R.id.nav_my_ads).setVisible(false)
             navigationView.menu.findItem(R.id.nav_login).setVisible(true)
             navigationView.invalidate()
