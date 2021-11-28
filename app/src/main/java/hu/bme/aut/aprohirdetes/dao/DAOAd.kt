@@ -24,7 +24,7 @@ class DAOAd {
         val user = auth.currentUser
         val currentDate: String = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
         val ad = Ad(title, description, price, city, currentDate, user?.email, category)
-        dbRef.child("ads").push().setValue(ad).addOnCompleteListener() {
+        dbRef.child("ads").child(user?.uid ?: "").push().setValue(ad).addOnCompleteListener() {
             task ->
                 if (task.isSuccessful) {
 
@@ -35,6 +35,6 @@ class DAOAd {
     }
 
     fun getAds(): Query {
-        return dbRef.orderByKey()
+        return dbRef.child("ads")
     }
 }
