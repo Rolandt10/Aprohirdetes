@@ -1,6 +1,7 @@
 package hu.bme.aut.aprohirdetes.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,8 +59,8 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
                 ads.clear()
                 for (ad in dataSnapshot.children) {
                     for (data in ad.children) {
-                        val ad: Ad? = data.getValue(Ad::class.java)
-                        ads.add(ad)
+                        val newAd: Ad? = data.getValue(Ad::class.java)
+                        ads.add(Ad(data.key, newAd?.title, newAd?.description, newAd?.price, newAd?.city, newAd?.createdAt, newAd?.email, newAd?.category))
                     }
                 }
                 recyclerView.adapter?.notifyDataSetChanged()

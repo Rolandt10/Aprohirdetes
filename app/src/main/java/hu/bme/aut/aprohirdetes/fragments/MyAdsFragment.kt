@@ -1,7 +1,6 @@
 package hu.bme.aut.aprohirdetes.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +12,16 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import hu.bme.aut.aprohirdetes.MainActivity
 import hu.bme.aut.aprohirdetes.R
-import hu.bme.aut.aprohirdetes.adapter.AdAdapter
+import hu.bme.aut.aprohirdetes.adapter.MyAdAdapter
 import hu.bme.aut.aprohirdetes.dao.DAOAd
 import hu.bme.aut.aprohirdetes.databinding.FragmentMyAdsBinding
 import hu.bme.aut.aprohirdetes.models.Ad
 
 class MyAdsFragment : Fragment(R.layout.fragment_my_ads) {
-
     private lateinit var recyclerView: RecyclerView
     private lateinit var binding : FragmentMyAdsBinding
     private lateinit var dao: DAOAd
-    private lateinit var ads: MutableList<Ad?>
+    private lateinit var myAds: MutableList<Ad?>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,8 +39,8 @@ class MyAdsFragment : Fragment(R.layout.fragment_my_ads) {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
 
-        ads = mutableListOf()
-        recyclerView.adapter = AdAdapter(ads)
+        myAds = mutableListOf()
+        recyclerView.adapter = MyAdAdapter(myAds)
 
         dao = DAOAd()
         loadData()
@@ -53,11 +51,10 @@ class MyAdsFragment : Fragment(R.layout.fragment_my_ads) {
     fun loadData() {
         dao.getUserAds().addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                ads.clear()
+                myAds.clear()
                 for (ad in dataSnapshot.children) {
-                    val ad: Ad? = ad.getValue(Ad::class.java)
-                    ads.add(ad)
-                    Log.w("TAG", ad.toString())
+                    val newAd: Ad? = ad.getValue(Ad::class.java)
+                    myAds.add(Ad(ad.key, newAd?.title, newAd?.description, newAd?.price, newAd?.city, newAd?.createdAt, newAd?.email, newAd?.category))
                 }
                 recyclerView.adapter?.notifyDataSetChanged()
             }

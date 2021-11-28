@@ -7,7 +7,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.aprohirdetes.R
 
-class AdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+open class AdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var textViewTitle: TextView
     var textViewCategory: TextView
     var textViewPrice: TextView

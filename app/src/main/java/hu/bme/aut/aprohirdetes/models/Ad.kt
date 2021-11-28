@@ -3,7 +3,8 @@ package hu.bme.aut.aprohirdetes.models
 import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
-data class Ad(val title: String? = null,
+data class Ad(val adId: String? = null,
+              val title: String? = null,
               val description: String? = null,
               val price: String? = null,
               val city: String? = null,
