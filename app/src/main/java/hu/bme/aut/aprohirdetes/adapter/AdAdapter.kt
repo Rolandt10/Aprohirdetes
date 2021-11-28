@@ -11,7 +11,7 @@ import hu.bme.aut.aprohirdetes.ViewHolder.AdViewHolder
 import hu.bme.aut.aprohirdetes.R
 
 
-class RecyclerViewAdapter(private val ads: MutableList<Ad?>) : RecyclerView.Adapter<AdViewHolder>() {
+class AdAdapter(private val ads: MutableList<Ad?>) : RecyclerView.Adapter<AdViewHolder>() {
 
     private lateinit var context: Context
 

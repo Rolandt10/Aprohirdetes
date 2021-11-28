@@ -13,7 +13,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import hu.bme.aut.aprohirdetes.MainActivity
 import hu.bme.aut.aprohirdetes.R
-import hu.bme.aut.aprohirdetes.adapter.RecyclerViewAdapter
+import hu.bme.aut.aprohirdetes.adapter.AdAdapter
 import hu.bme.aut.aprohirdetes.dao.DAOAd
 import hu.bme.aut.aprohirdetes.databinding.FragmentMyAdsBinding
 import hu.bme.aut.aprohirdetes.models.Ad
@@ -42,7 +42,7 @@ class MyAdsFragment : Fragment(R.layout.fragment_my_ads) {
         recyclerView.setHasFixedSize(true)
 
         ads = mutableListOf()
-        recyclerView.adapter = RecyclerViewAdapter(ads)
+        recyclerView.adapter = AdAdapter(ads)
 
         dao = DAOAd()
         loadData()
