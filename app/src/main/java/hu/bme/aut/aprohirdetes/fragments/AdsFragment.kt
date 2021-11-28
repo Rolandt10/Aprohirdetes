@@ -60,7 +60,7 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
                 for (ad in dataSnapshot.children) {
                     for (data in ad.children) {
                         val newAd: Ad? = data.getValue(Ad::class.java)
-                        ads.add(Ad(data.key, newAd?.title, newAd?.description, newAd?.price, newAd?.city, newAd?.createdAt, newAd?.email, newAd?.category))
+                        ads.add(newAd)
                     }
                 }
                 recyclerView.adapter?.notifyDataSetChanged()

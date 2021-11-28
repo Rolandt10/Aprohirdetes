@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import hu.bme.aut.aprohirdetes.models.Ad
+import java.text.FieldPosition
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Locale
@@ -44,7 +45,7 @@ class DAOAd {
         return dbRef.child("ads").child(user?.uid ?: "")
     }
 
-    fun deleteAd(adId: String) {
-        dbRef.child("ads").child(user?.uid ?: "").child(adId).removeValue()
+    fun deleteAd(key: String) {
+        dbRef.child("ads").child(user?.uid ?: "").child(key).removeValue()
     }
 }

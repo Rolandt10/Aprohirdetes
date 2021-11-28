@@ -1,16 +1,18 @@
 package hu.bme.aut.aprohirdetes.adapter
 
+import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.aprohirdetes.R
 import hu.bme.aut.aprohirdetes.ViewHolder.MyAdViewHolder
 import hu.bme.aut.aprohirdetes.dao.DAOAd
 import hu.bme.aut.aprohirdetes.models.Ad
 
-class MyAdAdapter(private val myAds: MutableList<Ad?>) : RecyclerView.Adapter<MyAdViewHolder>() {
+class MyAdAdapter(private val myAds: MutableList<Ad?>, private val keys: MutableList<String>) : RecyclerView.Adapter<MyAdViewHolder>() {
 
     private lateinit var context: Context
 
@@ -22,7 +24,7 @@ class MyAdAdapter(private val myAds: MutableList<Ad?>) : RecyclerView.Adapter<My
     }
 
     override fun onBindViewHolder(holder: MyAdViewHolder, position: Int) {
-        val dao: DAOAd = DAOAd()
+        val dao = DAOAd()
 
         val title = myAds.get(position)?.title.toString()
         val category = myAds.get(position)?.category.toString()
@@ -33,7 +35,19 @@ class MyAdAdapter(private val myAds: MutableList<Ad?>) : RecyclerView.Adapter<My
         holder.textViewPrice.text = context.getString(R.string.price_in_HUF, price)
 
         holder.buttonDelete.setOnClickListener {
-            dao.deleteAd(myAds.get(position)?.adId.toString())
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Hirdetés törlése")
+            builder.setMessage("Biztosan törölni szeretné a hirdetését?")
+
+            builder.setPositiveButton("IGEN") { dialog, which ->
+                dao.deleteAd(keys.get(position))
+                Toast.makeText(context,
+                    "A hirdetés törlésre került!", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("MÉGSE") { dialog, which ->
+
+            }
+            builder.show()
         }
 
         when (category) {
