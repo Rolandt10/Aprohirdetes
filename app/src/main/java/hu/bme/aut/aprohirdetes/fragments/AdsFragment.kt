@@ -1,7 +1,6 @@
 package hu.bme.aut.aprohirdetes.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,7 +53,7 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
     }
 
     fun loadData() {
-        dao.getAds().addValueEventListener(object : ValueEventListener {
+        dao.getAllAds().addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 ads.clear()
                 for (ad in dataSnapshot.children) {

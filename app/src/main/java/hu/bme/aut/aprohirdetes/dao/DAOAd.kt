@@ -34,7 +34,12 @@ class DAOAd {
         }
     }
 
-    fun getAds(): Query {
+    fun getAllAds(): Query {
         return dbRef.child("ads")
+    }
+
+    fun getUserAds(): Query {
+        val user = auth.currentUser
+        return dbRef.child("ads").child(user?.uid ?: "")
     }
 }
