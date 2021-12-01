@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -51,13 +53,18 @@ class MyAdsFragment : Fragment(R.layout.fragment_my_ads) {
     }
 
     fun loadData() {
-        dao.getUserAds().addValueEventListener(object : ValueEventListener {
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+        val user: FirebaseUser? = auth.currentUser
+
+        dao.getAllAds().addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 myAds.clear()
                 for (ad in dataSnapshot.children) {
                     val newAd: Ad? = ad.getValue(Ad::class.java)
-                    myAds.add(newAd)
-                    keys.add(ad.key ?: "")
+                    if (newAd?.uid.equals(user?.uid)) {
+                        myAds.add(newAd)
+                        keys.add(ad.key ?: "")
+                    }
                 }
                 recyclerView.adapter?.notifyDataSetChanged()
             }

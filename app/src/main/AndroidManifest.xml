@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aprohirdetes">
         <activity
+            android:name=".DetailsActivity"
+            android:exported="true" />
+        <activity
             android:name=".AdActivity"
             android:exported="true" />
         <activity

@@ -1,5 +1,6 @@
 package hu.bme.aut.aprohirdetes.dao
 
+import android.security.keystore.KeyNotYetValidException
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -26,8 +27,8 @@ class DAOAd {
 
     fun addNewAd(title: String, description: String, price: String, city: String, category: String) {
         val currentDate: String = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
-        val ad = Ad(title, description, price, city, currentDate, user?.email, category)
-        dbRef.child("ads").child(user?.uid ?: "").push().setValue(ad).addOnCompleteListener() {
+        val ad = Ad(user?.uid, title, description, price, city, currentDate, user?.email, category)
+        dbRef.child("ads").push().setValue(ad).addOnCompleteListener() {
             task ->
                 if (task.isSuccessful) {
 
@@ -37,12 +38,12 @@ class DAOAd {
         }
     }
 
-    fun getAllAds(): Query {
-        return dbRef.child("ads")
+    fun getAd(key: String): Query {
+        return dbRef.child("ads").child(key)
     }
 
-    fun getUserAds(): Query {
-        return dbRef.child("ads").child(user?.uid ?: "")
+    fun getAllAds(): Query {
+        return dbRef.child("ads")
     }
 
     fun deleteAd(key: String) {

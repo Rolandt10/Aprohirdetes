@@ -1,17 +1,19 @@
 package hu.bme.aut.aprohirdetes.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import hu.bme.aut.aprohirdetes.DetailsActivity
 import hu.bme.aut.aprohirdetes.models.Ad
 import hu.bme.aut.aprohirdetes.ViewHolder.AdViewHolder
 import hu.bme.aut.aprohirdetes.R
 
 
-class AdAdapter(private val ads: MutableList<Ad?>) : RecyclerView.Adapter<AdViewHolder>() {
+class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList<String>) : RecyclerView.Adapter<AdViewHolder>() {
 
     private lateinit var context: Context
 
@@ -50,6 +52,12 @@ class AdAdapter(private val ads: MutableList<Ad?>) : RecyclerView.Adapter<AdView
             "Üzlet, szolgáltatás" -> {
                 holder.adItem.setBackgroundColor(Color.rgb(156, 231, 252))
             }
+        }
+
+        holder.adItem.setOnClickListener {
+            val intent = Intent(context, DetailsActivity::class.java)
+            intent.putExtra("key", keys.get(position))
+            context.startActivity(intent)
         }
     }
 

@@ -25,6 +25,7 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
     private lateinit var binding: FragmentAdsBinding
     private lateinit var dao: DAOAd
     private lateinit var ads: MutableList<Ad?>
+    private lateinit var keys: MutableList<String>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +46,8 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
         recyclerView.setHasFixedSize(true)
 
         ads = mutableListOf()
-        recyclerView.adapter = AdAdapter(ads)
+        keys = mutableListOf()
+        recyclerView.adapter = AdAdapter(ads, keys)
 
         dao = DAOAd()
         loadData()
@@ -58,10 +60,9 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 ads.clear()
                 for (ad in dataSnapshot.children) {
-                    for (data in ad.children) {
-                        val newAd: Ad? = data.getValue(Ad::class.java)
-                        ads.add(newAd)
-                    }
+                    val newAd: Ad? = ad.getValue(Ad::class.java)
+                    ads.add(newAd)
+                    keys.add(ad.key ?: "")
                 }
                 recyclerView.adapter?.notifyDataSetChanged()
             }
