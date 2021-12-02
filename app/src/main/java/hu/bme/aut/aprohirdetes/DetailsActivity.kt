@@ -13,7 +13,6 @@ import hu.bme.aut.aprohirdetes.models.Ad
 
 class DetailsActivity : AppCompatActivity() {
 
-    private var ad: Ad? = null
     private lateinit var binding: ActivityDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,11 +21,10 @@ class DetailsActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        loadData()
-        Log.w("TAG", ad.toString())
+        loadAndSetData()
     }
 
-    fun loadData() {
+    fun loadAndSetData() {
         val dao = DAOAd()
         val extras = intent.extras
         val key = extras?.getString("key") ?: ""
@@ -34,7 +32,14 @@ class DetailsActivity : AppCompatActivity() {
 
         dao.getAd(key).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                ad = dataSnapshot.getValue(Ad::class.java)
+                val ad = dataSnapshot.getValue(Ad::class.java)
+                binding.title.text = ad?.title.toString()
+                binding.price.text = ad?.price.toString()
+                binding.description.text = ad?.description.toString()
+                binding.createdAt.text = ad?.createdAt.toString()
+                binding.city.text = ad?.city.toString()
+                binding.email.text = ad?.email.toString()
+                binding.category.text = ad?.category.toString()
                 Log.w("TAG", ad.toString())
             }
 
