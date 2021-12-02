@@ -47,6 +47,6 @@ class DAOAd {
     }
 
     fun deleteAd(key: String) {
-        dbRef.child("ads").child(user?.uid ?: "").child(key).removeValue()
+        dbRef.child("ads").child(key).removeValue()
     }
 }
