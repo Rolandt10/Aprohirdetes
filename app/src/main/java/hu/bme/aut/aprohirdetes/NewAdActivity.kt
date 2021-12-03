@@ -22,7 +22,7 @@ class NewAdActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
-        val dao = DAOAd()
+        val dao = DAOAd(applicationContext)
 
         binding.saveNewAdButton.setOnClickListener {
             val title = binding.titleText.text.toString()

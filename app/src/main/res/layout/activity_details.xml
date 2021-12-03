@@ -7,7 +7,7 @@
     tools:context=".DetailsActivity">
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/modifyAdDesc"
         android:layout_width="316dp"
         android:layout_height="121dp"
         android:layout_marginStart="24dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/modifyAdTitle"
         android:layout_width="253dp"
         android:layout_height="31dp"
         android:layout_marginStart="16dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/modifyAdPrice"
         android:layout_width="255dp"
         android:layout_height="29dp"
         android:layout_marginStart="16dp"
@@ -41,7 +41,7 @@
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/modifyAdTitle" />
 
     <TextView
         android:id="@+id/createdAt"
@@ -52,10 +52,10 @@
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/modifyAdDesc" />
 
     <TextView
-        android:id="@+id/city"
+        android:id="@+id/modifyAdCity"
         android:layout_width="225dp"
         android:layout_height="31dp"
         android:layout_marginStart="16dp"
@@ -74,7 +74,7 @@
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/city" />
+        app:layout_constraintTop_toBottomOf="@+id/modifyAdCity" />
 
     <TextView
         android:id="@+id/category"
@@ -109,7 +109,7 @@
         android:textColor="#FF9800"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/modifyAdTitle" />
 
     <TextView
         android:id="@+id/textView9"
@@ -121,7 +121,7 @@
         android:textColor="#FF9800"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/price" />
+        app:layout_constraintTop_toBottomOf="@+id/modifyAdPrice" />
 
     <TextView
         android:id="@+id/textView10"
@@ -133,7 +133,7 @@
         android:textColor="#FF9800"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/modifyAdDesc" />
 
     <TextView
         android:id="@+id/textView11"
@@ -157,7 +157,7 @@
         android:textColor="#FF9800"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city" />
+        app:layout_constraintTop_toBottomOf="@+id/modifyAdCity" />
 
     <TextView
         android:id="@+id/textView13"

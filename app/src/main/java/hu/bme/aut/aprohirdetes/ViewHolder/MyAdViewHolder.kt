@@ -6,8 +6,10 @@ import hu.bme.aut.aprohirdetes.R
 
 class MyAdViewHolder(itemView: View) : AdViewHolder(itemView) {
     var buttonDelete: Button
+    var modifyButton: Button
 
     init {
         buttonDelete = itemView.findViewById(R.id.deleteButton)
+        modifyButton = itemView.findViewById(R.id.modifyButton)
     }
 }

@@ -25,7 +25,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     fun loadAndSetData() {
-        val dao = DAOAd()
+        val dao = DAOAd(applicationContext)
         val extras = intent.extras
         val key = extras?.getString("key") ?: ""
         Log.w("TAG", key)
@@ -33,11 +33,11 @@ class DetailsActivity : AppCompatActivity() {
         dao.getAd(key).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val ad = dataSnapshot.getValue(Ad::class.java)
-                binding.title.text = ad?.title.toString()
-                binding.price.text = ad?.price.toString()
-                binding.description.text = ad?.description.toString()
+                binding.modifyAdTitle.text = ad?.title.toString()
+                binding.modifyAdPrice.text = ad?.price.toString()
+                binding.modifyAdDesc.text = ad?.description.toString()
                 binding.createdAt.text = ad?.createdAt.toString()
-                binding.city.text = ad?.city.toString()
+                binding.modifyAdCity.text = ad?.city.toString()
                 binding.email.text = ad?.email.toString()
                 binding.category.text = ad?.category.toString()
                 Log.w("TAG", ad.toString())

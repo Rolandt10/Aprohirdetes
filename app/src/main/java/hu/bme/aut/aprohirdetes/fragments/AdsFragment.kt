@@ -49,7 +49,7 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
         keys = mutableListOf()
         recyclerView.adapter = AdAdapter(ads, keys)
 
-        dao = DAOAd()
+        dao = DAOAd(context)
         loadData()
 
         return binding.root

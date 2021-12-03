@@ -2,11 +2,14 @@ package hu.bme.aut.aprohirdetes.adapter
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import hu.bme.aut.aprohirdetes.DetailsActivity
+import hu.bme.aut.aprohirdetes.ModifyAdActivity
 import hu.bme.aut.aprohirdetes.R
 import hu.bme.aut.aprohirdetes.ViewHolder.MyAdViewHolder
 import hu.bme.aut.aprohirdetes.dao.DAOAd
@@ -24,7 +27,7 @@ class MyAdAdapter(private val myAds: MutableList<Ad?>, private val keys: Mutable
     }
 
     override fun onBindViewHolder(holder: MyAdViewHolder, position: Int) {
-        val dao = DAOAd()
+        val dao = DAOAd(context)
 
         val title = myAds.get(position)?.title.toString()
         val category = myAds.get(position)?.category.toString()
@@ -48,6 +51,12 @@ class MyAdAdapter(private val myAds: MutableList<Ad?>, private val keys: Mutable
 
             }
             builder.show()
+        }
+
+        holder.modifyButton.setOnClickListener {
+            val intent = Intent(context, ModifyAdActivity::class.java)
+            intent.putExtra("key", keys.get(position))
+            context.startActivity(intent)
         }
 
         when (category) {
