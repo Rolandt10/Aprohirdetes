@@ -13,8 +13,7 @@
         android:theme="@style/Theme.Aprohirdetes">
         <activity
             android:name=".ModifyAdActivity"
-            android:exported="true"
-            android:label="@string/title_activity_modify_ad"/>
+            android:exported="true"/>
         <activity
             android:name=".DetailsActivity"
             android:exported="true" />
@@ -23,12 +22,6 @@
             android:exported="true" />
         <activity
             android:name=".NewAdActivity"
-            android:exported="true" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true" />
-        <activity
-            android:name=".RegistrationActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
