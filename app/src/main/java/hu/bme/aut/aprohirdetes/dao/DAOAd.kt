@@ -15,6 +15,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Locale
 
+/**
+ * Egy Data Access Object, amivel elérjük a backend tárolt adatokat.
+ */
 class DAOAd(var context: Context?) {
     private var dbRef: DatabaseReference
     private var auth: FirebaseAuth
@@ -26,6 +29,10 @@ class DAOAd(var context: Context?) {
         user = auth.currentUser
     }
 
+    /**
+     * Új hirdetés hozzáadása.
+     * Egy Toast üzenetet mutat sikertelen, ill. sikeres végrehajtás esetén egyaránt.
+     */
     fun addNewAd(title: String, description: String, price: String, city: String, category: String) {
         val currentDate: String = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
         val ad = Ad(user?.uid, title, description, price, city, currentDate, user?.email, category)
@@ -39,14 +46,24 @@ class DAOAd(var context: Context?) {
         }
     }
 
+    /**
+     * Egy konkrét hirdetés lekérdezése.
+     */
     fun getAd(key: String): Query {
         return dbRef.child("ads").child(key)
     }
 
+    /**
+     * Az összes hirdetés lekérdezése.
+     */
     fun getAllAds(): Query {
         return dbRef.child("ads")
     }
 
+    /**
+     * Egy hirdetés frissítése, módosítása.
+     * Egy Toast üzenetet mutat sikertelen, ill. sikeres végrehajtás esetén egyaránt.
+     */
     fun modifyAd(key: String, title: String, description: String, price: String, city: String, category: String) {
         val currentDate: String = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
         dbRef.child("ads").child(key).setValue(Ad(user?.uid, title, description, price, city, currentDate, user?.email, category)).addOnCompleteListener() {
@@ -60,6 +77,9 @@ class DAOAd(var context: Context?) {
         }
     }
 
+    /**
+     * Egy hirdetés törlése.
+     */
     fun deleteAd(key: String) {
         dbRef.child("ads").child(key).removeValue()
     }
