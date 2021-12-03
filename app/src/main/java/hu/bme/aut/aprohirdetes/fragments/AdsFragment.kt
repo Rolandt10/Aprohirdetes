@@ -20,10 +20,17 @@ import hu.bme.aut.aprohirdetes.databinding.FragmentAdsBinding
 
 class AdsFragment : Fragment(R.layout.fragment_ads) {
 
+    /**
+     * SwipeRefreshLayout az hirdetések frissítéséhez.
+     */
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var binding: FragmentAdsBinding
     private lateinit var dao: DAOAd
+
+    /**
+     * Itt tároljuk el a lekérdezett hirdetéseket, ill. azok kulcsait.
+     */
     private lateinit var ads: MutableList<Ad?>
     private lateinit var keys: MutableList<String>
 
@@ -34,8 +41,11 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
     ): View? {
         binding = FragmentAdsBinding.inflate(inflater, container, false)
 
+        /**
+         * Ha gördítünk egyet a képernyőn, akkor frissülnek a hirdetések.
+         * Ezt követően le kell állítani a frissítést. (Eltűnik a forgó nyíl animáció.)
+         */
         swipeRefreshLayout = binding.swipeRefreshLayout
-
         swipeRefreshLayout.setOnRefreshListener {
             loadData()
             swipeRefreshLayout.isRefreshing = false
@@ -55,10 +65,16 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
         return binding.root
     }
 
+    /**
+     * Minden frissítéskor töröljük a hirdetéseket, és azok kulcsait.
+     * (Annak érdekében, hogy ne jelenjenek meg a már meglévő hirdetések többször.)
+     * A lekérdezett adatokat hozzáadja a listákhoz.
+     */
     fun loadData() {
         dao.getAllAds().addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 ads.clear()
+                keys.clear()
                 for (ad in dataSnapshot.children) {
                     val newAd: Ad? = ad.getValue(Ad::class.java)
                     ads.add(newAd)
