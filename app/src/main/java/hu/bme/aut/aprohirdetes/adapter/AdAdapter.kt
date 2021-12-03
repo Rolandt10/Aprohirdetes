@@ -12,7 +12,12 @@ import hu.bme.aut.aprohirdetes.models.Ad
 import hu.bme.aut.aprohirdetes.ViewHolder.AdViewHolder
 import hu.bme.aut.aprohirdetes.R
 
-
+/**
+ * Konstruktorában meg kell adni a hirdetéseket, ill. azok kulcsait egyaránt, mivel így
+ * nem kell külön az Ad modellben eltárolni a hirdetés azonosítóját.
+ * (Új hirdetés létrehozásakor lenne egy azonosító tulajdonsága a hirdetésünknek, ami
+ * a Firebase backenden null-ként kerülne tárolásra a JSON struktúra miatt.)
+ */
 class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList<String>) : RecyclerView.Adapter<AdViewHolder>() {
 
     private lateinit var context: Context
@@ -24,6 +29,12 @@ class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList
         return AdViewHolder(view)
     }
 
+    /**
+     * Minden lista elem rendelkezik a hirdetés címével, kategóriájával, ill. árával.
+     * Minden kategória külön színnel rendelkezik. Ha magára a lista elemre kattinktunk,
+     * akkor létrejön egy új Activity, ahol megnézhetjük a hirdetéssel kapcsolatos további
+     * részeleteket.
+     */
     override fun onBindViewHolder(holder: AdViewHolder, position: Int) {
         val title = ads.get(position)?.title.toString()
         val category = ads.get(position)?.category.toString()

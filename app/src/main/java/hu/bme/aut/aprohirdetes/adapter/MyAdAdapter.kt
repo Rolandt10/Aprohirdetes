@@ -15,6 +15,12 @@ import hu.bme.aut.aprohirdetes.ViewHolder.MyAdViewHolder
 import hu.bme.aut.aprohirdetes.dao.DAOAd
 import hu.bme.aut.aprohirdetes.models.Ad
 
+/**
+ * Konstruktorában meg kell adni a hirdetéseket, ill. azok kulcsait egyaránt, mivel így
+ * nem kell külön az Ad modellben eltárolni a hirdetés azonosítóját.
+ * (Új hirdetés létrehozásakor lenne egy azonosító tulajdonsága a hirdetésünknek, ami
+ * a Firebase backenden null-ként kerülne tárolásra a JSON struktúra miatt.)
+ */
 class MyAdAdapter(private val myAds: MutableList<Ad?>, private val keys: MutableList<String>) : RecyclerView.Adapter<MyAdViewHolder>() {
 
     private lateinit var context: Context
@@ -26,6 +32,15 @@ class MyAdAdapter(private val myAds: MutableList<Ad?>, private val keys: Mutable
         return MyAdViewHolder(view)
     }
 
+    /**
+     * Minden elem rendelkezik egy módosító illetve, törlő gombbal, valamint
+     * látható egy hirdetés kategóriája, ára, ill. a hirdetésnek megadott cím.
+     * Minden kategória más háttérszínnel rendelkezik. A törlés gombra kattintás
+     * esetén megjelenik egy alert dialog, majd ha megbizonyosodtunk arról, hogy törölni
+     * szeretnénk a hirdetést, a backenden törlésre kerül a hirdetés annak azonosítója
+     * alapján. A módosítás gombra való kattintás esetén pedig egy új Actitvity jön létre, ahol
+     * módosíthatjuk a hirdetésünket.
+     */
     override fun onBindViewHolder(holder: MyAdViewHolder, position: Int) {
         val dao = DAOAd(context)
 
