@@ -14,8 +14,7 @@
         <activity
             android:name=".ModifyAdActivity"
             android:exported="true"
-            android:label="@string/title_activity_modify_ad"
-            android:theme="@style/Theme.Aprohirdetes.NoActionBar" />
+            android:label="@string/title_activity_modify_ad"/>
         <activity
             android:name=".DetailsActivity"
             android:exported="true" />
