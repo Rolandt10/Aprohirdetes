@@ -26,7 +26,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        binding.textView2.setOnClickListener {
+        binding.registrationTextView.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, RegistrationFragment())?.commitNow()
         }
 

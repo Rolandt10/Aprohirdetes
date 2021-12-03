@@ -59,6 +59,7 @@ class MyAdsFragment : Fragment(R.layout.fragment_my_ads) {
         dao.getAllAds().addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 myAds.clear()
+                keys.clear()
                 for (ad in dataSnapshot.children) {
                     val newAd: Ad? = ad.getValue(Ad::class.java)
                     if (newAd?.uid.equals(user?.uid)) {
