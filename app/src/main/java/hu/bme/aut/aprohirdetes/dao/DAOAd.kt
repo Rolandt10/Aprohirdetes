@@ -14,6 +14,7 @@ import java.text.FieldPosition
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Locale
+import kotlin.collections.HashMap
 
 /**
  * Egy Data Access Object, amivel elérjük a backend tárolt adatokat.
@@ -82,5 +83,13 @@ class DAOAd(var context: Context?) {
      */
     fun deleteAd(key: String) {
         dbRef.child("ads").child(key).removeValue()
+    }
+
+    /**
+     * Új felhasználó hozzáadása.
+     */
+    fun addNewUser(userId: String?, name: String, phoneNumber: String) {
+        val map = mapOf<String, Any?>("name" to name, "phone" to phoneNumber)
+        dbRef.child("users").child(userId ?: "").updateChildren(map)
     }
 }

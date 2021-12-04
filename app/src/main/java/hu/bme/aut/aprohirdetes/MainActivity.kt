@@ -5,7 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat
@@ -19,7 +21,6 @@ import hu.bme.aut.aprohirdetes.fragments.LoginFragment
 import hu.bme.aut.aprohirdetes.fragments.MyAdsFragment
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
     private lateinit var drawer : DrawerLayout
     private lateinit var binding : ActivityMainBinding
     private lateinit var firebaseAuth : FirebaseAuth
@@ -55,8 +56,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView = binding.navView
         firebaseAuth = FirebaseAuth.getInstance()
         val firebaseUser = firebaseAuth.currentUser
+        val header: View = binding.navView.getHeaderView(0)
+        val tvEmail: TextView = header.findViewById(R.id.email)
 
         if (firebaseUser != null) {
+            tvEmail.setText(firebaseUser?.email)
             navigationView.menu.findItem(R.id.nav_login).setVisible(false)
             navigationView.menu.findItem(R.id.nav_favourite_ads).setVisible(true)
             navigationView.menu.findItem(R.id.nav_my_ads).setVisible(true)

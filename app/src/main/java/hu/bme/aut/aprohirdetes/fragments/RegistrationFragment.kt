@@ -10,12 +10,14 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import hu.bme.aut.aprohirdetes.R
+import hu.bme.aut.aprohirdetes.dao.DAOAd
 import hu.bme.aut.aprohirdetes.databinding.FragmentRegistrationBinding
 
 class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
     private lateinit var binding : FragmentRegistrationBinding
     private lateinit var firebaseAuth : FirebaseAuth
+    private lateinit var dao: DAOAd
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +32,8 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         binding.textView3.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, LoginFragment())?.commitNow()
         }
+
+        dao = DAOAd(context)
 
         binding.registerButton.setOnClickListener {
 
@@ -56,6 +60,8 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
                             val user : FirebaseUser? = firebaseAuth.currentUser
                             user?.sendEmailVerification()
+
+                            dao.addNewUser(firebaseAuth?.uid, "Tóth Roland", "123123123")
 
                             Toast.makeText(activity, "Sikeres regisztráció!", Toast.LENGTH_SHORT).show()
                         } else {
