@@ -82,7 +82,6 @@ class DAOAd(var context: Context?) {
             } else {
                 Toast.makeText(context, "Az hirdetés módosítésa sikertelen!", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 
@@ -101,7 +100,26 @@ class DAOAd(var context: Context?) {
         dbRef.child("users").child(userId ?: "").updateChildren(map)
     }
 
+    /**
+     * A felhasználó telefonszáma, ill. teljes neve.
+     */
     fun getUserData(userId: String?): Query {
         return dbRef.child("users").child(userId ?: "")
+    }
+
+    fun addFavouriteAd(key: String?, ad: Ad?) {
+        dbRef.child("ads").child(key ?: "").child("favouriteAds").child(user?.uid ?: "").setValue(user?.email).addOnCompleteListener() {
+                task ->
+            if (task.isSuccessful) {
+                Toast.makeText(context, "Hozzáadva a kedvencekhez", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Nem sikerült hozzáadni a kedvencekhez", Toast.LENGTH_SHORT).show()
+                Log.w("TAG", task.exception.toString())
+            }
+        }
+    }
+
+    fun deleteFavouriteAd(adKey: String) {
+        dbRef.child("ads").child(adKey).child("favouriteAds").child(user?.uid ?: "").removeValue()
     }
 }

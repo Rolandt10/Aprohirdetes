@@ -19,7 +19,7 @@ import hu.bme.aut.aprohirdetes.dao.DAOAd
  * (Új hirdetés létrehozásakor lenne egy azonosító tulajdonsága a hirdetésünknek, ami
  * a Firebase backenden null-ként kerülne tárolásra a JSON struktúra miatt.)
  */
-class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList<String>) : RecyclerView.Adapter<AdViewHolder>() {
+class FavAdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList<String>) : RecyclerView.Adapter<AdViewHolder>() {
 
     private lateinit var context: Context
 
@@ -74,7 +74,7 @@ class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList
 
         holder.textViewFavourite.setOnClickListener {
             val dao = DAOAd(context)
-            dao.addFavouriteAd(keys.get(position), ads.get(position))
+            dao.deleteFavouriteAd(keys.get(position))
         }
     }
 
