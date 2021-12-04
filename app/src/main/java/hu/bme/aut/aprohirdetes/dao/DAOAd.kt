@@ -6,9 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.Query
+import com.google.firebase.database.*
 import hu.bme.aut.aprohirdetes.models.Ad
 import java.text.FieldPosition
 import java.text.SimpleDateFormat
@@ -91,5 +89,25 @@ class DAOAd(var context: Context?) {
     fun addNewUser(userId: String?, name: String, phoneNumber: String) {
         val map = mapOf<String, Any?>("name" to name, "phone" to phoneNumber)
         dbRef.child("users").child(userId ?: "").updateChildren(map)
+    }
+
+    fun getFullNameOfUser(userId: String?): Query {
+        return dbRef.child("users").child(userId ?: "")
+    }
+
+    fun getPhoneNumberOfUser(userId: String?): String {
+        var map = mapOf<String, Any?>()
+        dbRef.child("users").child(userId ?: "").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                map = dataSnapshot.getValue() as Map<String, Any?>
+                Log.w("TAG", map.get("name").toString())
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w("TAG", databaseError.message.toString())
+            }
+        })
+
+        return map.get("phone").toString()
     }
 }

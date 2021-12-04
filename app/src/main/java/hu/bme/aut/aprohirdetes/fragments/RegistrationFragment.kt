@@ -37,6 +37,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
         binding.registerButton.setOnClickListener {
 
+            val fullName = binding.registrationName.text.toString()
             val email = binding.emailAddress.text.toString()
             val password = binding.password.text.toString()
             val phoneNumber = binding.phoneNumber.text.toString()
@@ -61,7 +62,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                             val user : FirebaseUser? = firebaseAuth.currentUser
                             user?.sendEmailVerification()
 
-                            dao.addNewUser(firebaseAuth?.uid, "Tóth Roland", "123123123")
+                            dao.addNewUser(firebaseAuth?.uid, fullName, phoneNumber)
 
                             Toast.makeText(activity, "Sikeres regisztráció!", Toast.LENGTH_SHORT).show()
                         } else {

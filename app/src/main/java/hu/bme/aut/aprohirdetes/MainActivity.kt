@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -14,6 +15,10 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import hu.bme.aut.aprohirdetes.dao.DAOAd
 import hu.bme.aut.aprohirdetes.databinding.ActivityMainBinding
 import hu.bme.aut.aprohirdetes.fragments.AdsFragment
 import hu.bme.aut.aprohirdetes.fragments.FavouriteAdsFragment
@@ -25,6 +30,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var binding : ActivityMainBinding
     private lateinit var firebaseAuth : FirebaseAuth
     private lateinit var navigationView: NavigationView
+    private lateinit var dao: DAOAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer = binding.drawerLayout
 
+        dao = DAOAd(applicationContext)
         updateNav()
 
         val abdt = ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -58,9 +65,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val firebaseUser = firebaseAuth.currentUser
         val header: View = binding.navView.getHeaderView(0)
         val tvEmail: TextView = header.findViewById(R.id.email)
+        val tvName: TextView = header.findViewById(R.id.name)
 
         if (firebaseUser != null) {
-            tvEmail.setText(firebaseUser?.email)
+
+            tvEmail.setText(firebaseUser.email)
+            dao.getFullNameOfUser(firebaseUser.uid).addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var map: Map<String, Any?>? = dataSnapshot.getValue() as Map<String, Any?>?
+                    tvName.setText(map?.get("name").toString())
+                    Log.w("TAG", map?.get("name").toString())
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.w("TAG", databaseError.message)
+                }
+            })
             navigationView.menu.findItem(R.id.nav_login).setVisible(false)
             navigationView.menu.findItem(R.id.nav_favourite_ads).setVisible(true)
             navigationView.menu.findItem(R.id.nav_my_ads).setVisible(true)
