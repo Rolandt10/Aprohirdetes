@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -24,6 +25,7 @@ import hu.bme.aut.aprohirdetes.fragments.AdsFragment
 import hu.bme.aut.aprohirdetes.fragments.FavouriteAdsFragment
 import hu.bme.aut.aprohirdetes.fragments.LoginFragment
 import hu.bme.aut.aprohirdetes.fragments.MyAdsFragment
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawer : DrawerLayout
@@ -66,11 +68,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val header: View = binding.navView.getHeaderView(0)
         val tvEmail: TextView = header.findViewById(R.id.email)
         val tvName: TextView = header.findViewById(R.id.name)
+        val tvTitle: TextView = header.findViewById(R.id.header_title)
 
         if (firebaseUser != null) {
-
+            tvEmail.isVisible = true
+            tvName.isVisible = true
+            tvTitle.isVisible = false
             tvEmail.setText(firebaseUser.email)
-            dao.getFullNameOfUser(firebaseUser.uid).addValueEventListener(object : ValueEventListener {
+            dao.getUserData(firebaseUser.uid).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     var map: Map<String, Any?>? = dataSnapshot.getValue() as Map<String, Any?>?
                     tvName.setText(map?.get("name").toString())
@@ -87,6 +92,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             navigationView.menu.findItem(R.id.nav_logout).setVisible(true)
             navigationView.invalidate()
         } else {
+            tvEmail.isVisible = false
+            tvName.isVisible = false
+            tvTitle.isVisible = true
             navigationView.menu.findItem(R.id.nav_logout).setVisible(false)
             navigationView.menu.findItem(R.id.nav_favourite_ads).setVisible(false)
             navigationView.menu.findItem(R.id.nav_my_ads).setVisible(false)

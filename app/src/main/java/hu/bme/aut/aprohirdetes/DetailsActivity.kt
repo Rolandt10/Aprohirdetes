@@ -12,7 +12,6 @@ import hu.bme.aut.aprohirdetes.databinding.ActivityMainBinding
 import hu.bme.aut.aprohirdetes.models.Ad
 
 class DetailsActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,12 +38,13 @@ class DetailsActivity : AppCompatActivity() {
                 binding.createdAt.text = ad?.createdAt.toString()
                 binding.modifyAdCity.text = ad?.city.toString()
                 binding.email.text = ad?.email.toString()
+                binding.detailsAdPhone.text = ad?.phoneNumber.toString()
                 binding.category.text = ad?.category.toString()
                 Log.w("TAG", ad.toString())
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Log.w("TAG", databaseError.message.toString())
+                Log.w("TAG", databaseError.message)
             }
         })
     }

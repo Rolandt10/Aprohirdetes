@@ -77,6 +77,17 @@
         app:layout_constraintTop_toBottomOf="@+id/modifyAdCity" />
 
     <TextView
+        android:id="@+id/detailsAdPhone"
+        android:layout_width="225dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <TextView
         android:id="@+id/category"
         android:layout_width="225dp"
         android:layout_height="31dp"
@@ -85,7 +96,7 @@
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsAdPhone" />
 
     <TextView
         android:id="@+id/textView7"
@@ -160,6 +171,18 @@
         app:layout_constraintTop_toBottomOf="@+id/modifyAdCity" />
 
     <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Telefonszám:"
+        android:textColor="#FF9800"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -169,7 +192,7 @@
         android:textColor="#FF9800"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsAdPhone" />
 
     <TextView
         android:id="@+id/textView14"

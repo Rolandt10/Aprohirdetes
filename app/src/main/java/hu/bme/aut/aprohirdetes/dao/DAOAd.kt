@@ -33,16 +33,26 @@ class DAOAd(var context: Context?) {
      * Egy Toast üzenetet mutat sikertelen, ill. sikeres végrehajtás esetén egyaránt.
      */
     fun addNewAd(title: String, description: String, price: String, city: String, category: String) {
-        val currentDate: String = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
-        val ad = Ad(user?.uid, title, description, price, city, currentDate, user?.email, category)
-        dbRef.child("ads").push().setValue(ad).addOnCompleteListener() {
-            task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(context, "Az új hirdetés mentésre került!", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(context, "Az új hirdetés létrehozása sikertelen!", Toast.LENGTH_SHORT).show()
+
+        getUserData(user?.uid).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val map = dataSnapshot.getValue() as Map<String, Any?>
+                val currentDate: String = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+                val ad = Ad(user?.uid, title, description, price, city, currentDate, user?.email, map.get("phone").toString(), category)
+                dbRef.child("ads").push().setValue(ad).addOnCompleteListener() {
+                        task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(context, "Az új hirdetés mentésre került!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "Az új hirdetés létrehozása sikertelen!", Toast.LENGTH_SHORT).show()
+                    }
                 }
-        }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w("TAG", databaseError.message)
+            }
+        })
     }
 
     /**
@@ -91,23 +101,7 @@ class DAOAd(var context: Context?) {
         dbRef.child("users").child(userId ?: "").updateChildren(map)
     }
 
-    fun getFullNameOfUser(userId: String?): Query {
+    fun getUserData(userId: String?): Query {
         return dbRef.child("users").child(userId ?: "")
-    }
-
-    fun getPhoneNumberOfUser(userId: String?): String {
-        var map = mapOf<String, Any?>()
-        dbRef.child("users").child(userId ?: "").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                map = dataSnapshot.getValue() as Map<String, Any?>
-                Log.w("TAG", map.get("name").toString())
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.w("TAG", databaseError.message.toString())
-            }
-        })
-
-        return map.get("phone").toString()
     }
 }
