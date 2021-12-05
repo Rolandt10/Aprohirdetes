@@ -53,12 +53,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         abdt.syncState()
 
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, AdsFragment()).commit()
-
-        /*if (user == null || user!!.isEmailVerified) {
-            binding.emailVerificationText.visibility = View.INVISIBLE
-        } else if (!user!!.isEmailVerified) {
-            binding.emailVerificationText.visibility = View.VISIBLE
-        }*/
     }
 
     fun updateNav() {

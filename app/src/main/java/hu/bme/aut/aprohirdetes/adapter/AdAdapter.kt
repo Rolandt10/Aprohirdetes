@@ -43,6 +43,7 @@ class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList
      * részeleteket.
      */
     override fun onBindViewHolder(holder: AdViewHolder, position: Int) {
+        val position = holder.adapterPosition
         val title = ads[position]?.title.toString()
         val category = ads[position]?.category.toString()
         val price = ads[position]?.price.toString()
