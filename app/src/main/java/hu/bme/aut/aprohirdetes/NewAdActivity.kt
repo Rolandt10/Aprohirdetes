@@ -31,10 +31,10 @@ class NewAdActivity : AppCompatActivity() {
             val category = binding.spinner.selectedItem.toString()
 
             when {
-                title.length < 3 && title.length > 100 -> {
+                title.length in 3..100 -> {
                     binding.titleText.error = "A cím hossza min. 3 és max. 100 karakter!"
                 }
-                description.length < 10 && description.length > 500 -> {
+                description.length in 10..500 -> {
                     binding.descriptionText.error = "A leírás hossza min. 10 és max. 400 karakter!"
                 }
                 price.isEmpty() -> {

@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             tvEmail.text = firebaseUser.email
             dao.getUserData(firebaseUser.uid).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val map: Map<String, Any?>? = dataSnapshot.getValue() as Map<String, Any?>?
+                    val map: Map<String, Any?>? = dataSnapshot.value as Map<String, Any?>?
                     tvName.text = map?.get("name").toString()
                     Log.w("TAG", map?.get("name").toString())
                 }
