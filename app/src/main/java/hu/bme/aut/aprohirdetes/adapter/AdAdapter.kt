@@ -76,29 +76,11 @@ class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList
             context.startActivity(intent)
         }
 
-        val user = FirebaseAuth.getInstance().currentUser
-        val dao = DAOAd(context)
-
-        dao.getAd(keys[position]).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                Log.w("tag", dataSnapshot.toString())
-                val map: Map<String, Any?> = dataSnapshot.value as Map<String, Any?>
-                if (map.containsKey("favouriteAds")) {
-                    val users: Map<String, Any?> = map["favouriteAds"] as Map<String, Any?>
-                    if (users.containsKey(user?.uid ?: "")) {
-                        holder.imageButtonFavourite.setImageResource(R.drawable.ic_favourite_full)
-                    }
-                } else {
-                    holder.imageButtonFavourite.setImageResource(R.drawable.ic_favourite)
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-
-            }
-        })
+        setFavouriteButton(keys[position], holder)
 
         holder.imageButtonFavourite.setOnClickListener {
+            val user = FirebaseAuth.getInstance().currentUser
+            val dao = DAOAd(context)
             dao.getAd(keys[position]).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     Log.w("tag", dataSnapshot.toString())
@@ -124,5 +106,28 @@ class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList
 
     override fun getItemCount(): Int {
         return ads.size
+    }
+
+    private fun setFavouriteButton(adKey: String, holder: AdViewHolder) {
+        val user = FirebaseAuth.getInstance().currentUser
+        val dao = DAOAd(context)
+        dao.getAd(adKey).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                Log.w("tag", dataSnapshot.toString())
+                val map: Map<String, Any?> = dataSnapshot.value as Map<String, Any?>
+                if (map.containsKey("favouriteAds")) {
+                    val users: Map<String, Any?> = map["favouriteAds"] as Map<String, Any?>
+                    if (users.containsKey(user?.uid ?: "")) {
+                        holder.imageButtonFavourite.setImageResource(R.drawable.ic_favourite_full)
+                    }
+                } else {
+                    holder.imageButtonFavourite.setImageResource(R.drawable.ic_favourite)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        })
     }
 }
