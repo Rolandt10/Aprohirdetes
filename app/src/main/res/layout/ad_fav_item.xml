@@ -40,16 +40,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <ImageButton
+        <Button
             android:id="@+id/favouriteButton"
+            android:text="Törlés"
             android:layout_width="43dp"
             android:layout_height="38dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:background="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_favourite" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
