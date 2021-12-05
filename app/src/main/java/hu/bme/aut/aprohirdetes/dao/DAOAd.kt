@@ -106,6 +106,9 @@ class DAOAd(var context: Context?) {
         return dbRef.child("users").child(userId ?: "")
     }
 
+    /**
+     * Kedvenc hirdetés hozzáadása.
+     */
     fun addFavouriteAd(key: String?) {
         dbRef.child("ads").child(key ?: "").child("favouriteAds").child(user?.uid ?: "").setValue(user?.email).addOnCompleteListener {
                 task ->
@@ -118,6 +121,9 @@ class DAOAd(var context: Context?) {
         }
     }
 
+    /**
+     * Kedvenc hirdetés törlése.
+     */
     fun deleteFavouriteAd(adKey: String) {
         dbRef.child("ads").child(adKey).child("favouriteAds").child(user?.uid ?: "").removeValue().addOnCompleteListener {
                 task ->
