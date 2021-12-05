@@ -62,7 +62,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                             val user : FirebaseUser? = firebaseAuth.currentUser
                             user?.sendEmailVerification()
 
-                            dao.addNewUser(firebaseAuth?.uid, fullName, phoneNumber)
+                            dao.addNewUser(firebaseAuth.uid, fullName, phoneNumber)
 
                             Toast.makeText(activity, "Sikeres regisztráció!", Toast.LENGTH_SHORT).show()
                         } else {

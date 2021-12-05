@@ -82,16 +82,16 @@ class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList
             dao.getAd(keys[position]).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     Log.w("tag", dataSnapshot.toString())
-                    val map: Map<String, Any?> = dataSnapshot.getValue() as Map<String, Any?>
+                    val map: Map<String, Any?> = dataSnapshot.value as Map<String, Any?>
                     if (map.containsKey("favouriteAds")) {
-                        val users: Map<String, Any?> = map?.get("favouriteAds") as Map<String, Any?>
+                        val users: Map<String, Any?> = map["favouriteAds"] as Map<String, Any?>
                         if (users.containsKey(user?.uid ?: "")) {
                             holder.imageButtonFavourite.setImageResource(R.drawable.ic_favourite)
                             dao.deleteFavouriteAd(keys[position])
                         }
                     } else {
                         holder.imageButtonFavourite.setImageResource(R.drawable.ic_favourite_full)
-                        dao.addFavouriteAd(keys[position], ads[position])
+                        dao.addFavouriteAd(keys[position])
                     }
                 }
 

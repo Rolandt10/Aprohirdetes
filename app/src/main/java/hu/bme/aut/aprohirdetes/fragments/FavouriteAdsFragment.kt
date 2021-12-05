@@ -57,7 +57,7 @@ class FavouriteAdsFragment : Fragment(R.layout.fragment_fav_ads) {
                 ads.clear()
                 keys.clear()
                 for (ad in dataSnapshot.children) {
-                    val map: Map<String, Any?> = ad.getValue() as Map<String, Any?>
+                    val map: Map<String, Any?> = ad.value as Map<String, Any?>
                     if (map.containsKey("favouriteAds")) {
                         val users: Map<String, Any?> = map["favouriteAds"] as Map<String, Any?>
                         if (users.containsKey(user?.uid ?: "")) {

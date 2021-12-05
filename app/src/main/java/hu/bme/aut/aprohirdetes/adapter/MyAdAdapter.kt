@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import hu.bme.aut.aprohirdetes.DetailsActivity
 import hu.bme.aut.aprohirdetes.ModifyAdActivity
 import hu.bme.aut.aprohirdetes.R
 import hu.bme.aut.aprohirdetes.ViewHolder.MyAdViewHolder
@@ -44,9 +43,9 @@ class MyAdAdapter(private val myAds: MutableList<Ad?>, private val keys: Mutable
     override fun onBindViewHolder(holder: MyAdViewHolder, position: Int) {
         val dao = DAOAd(context)
 
-        val title = myAds.get(position)?.title.toString()
-        val category = myAds.get(position)?.category.toString()
-        val price = myAds.get(position)?.price.toString()
+        val title = myAds[position]?.title.toString()
+        val category = myAds[position]?.category.toString()
+        val price = myAds[position]?.price.toString()
 
         holder.textViewTitle.text = title
         holder.textViewCategory.text = category
@@ -57,12 +56,12 @@ class MyAdAdapter(private val myAds: MutableList<Ad?>, private val keys: Mutable
             builder.setTitle("Hirdetés törlése")
             builder.setMessage("Biztosan törölni szeretné a hirdetését?")
 
-            builder.setPositiveButton("IGEN") { dialog, which ->
-                dao.deleteAd(keys.get(position))
+            builder.setPositiveButton("IGEN") { _, _ ->
+                dao.deleteAd(keys[position])
                 Toast.makeText(context,
                     "A hirdetés törlésre került!", Toast.LENGTH_SHORT).show()
             }
-            builder.setNegativeButton("MÉGSE") { dialog, which ->
+            builder.setNegativeButton("MÉGSE") { _, _ ->
 
             }
             builder.show()
@@ -70,7 +69,7 @@ class MyAdAdapter(private val myAds: MutableList<Ad?>, private val keys: Mutable
 
         holder.modifyButton.setOnClickListener {
             val intent = Intent(context, ModifyAdActivity::class.java)
-            intent.putExtra("key", keys.get(position))
+            intent.putExtra("key", keys[position])
             context.startActivity(intent)
         }
 
