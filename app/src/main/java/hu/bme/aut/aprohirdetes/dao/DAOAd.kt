@@ -75,7 +75,9 @@ class DAOAd(var context: Context?) {
      */
     fun modifyAd(key: String, title: String, description: String, price: String, city: String, category: String) {
         val currentDate: String = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
-        dbRef.child("ads").child(key).setValue(Ad(user?.uid, title, description, price, city, currentDate, user?.email, category)).addOnCompleteListener() {
+        val map = mapOf<String, Any?>("uid" to user?.uid, "title" to title, "description" to description,
+        "price" to price, "city" to city, "createdAt" to currentDate, "email" to user?.email, "category" to category)
+        dbRef.child("ads").child(key).updateChildren(map).addOnCompleteListener() {
             task ->
             if (task.isSuccessful) {
                 Toast.makeText(context, "Az hirdetés módosult!", Toast.LENGTH_SHORT).show()

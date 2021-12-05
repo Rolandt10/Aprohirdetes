@@ -77,6 +77,7 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
                 keys.clear()
                 for (ad in dataSnapshot.children) {
                     val newAd: Ad? = ad.getValue(Ad::class.java)
+                    Log.w("TAG", newAd.toString())
                     ads.add(newAd)
                     keys.add(ad.key ?: "")
                 }
