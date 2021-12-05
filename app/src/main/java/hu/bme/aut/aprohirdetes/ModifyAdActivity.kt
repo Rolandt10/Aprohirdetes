@@ -65,6 +65,23 @@ class ModifyAdActivity : AppCompatActivity() {
         val price = binding.modifyAdPrice.text.toString()
         val city = binding.modifyAdCity.text.toString()
         val category = binding.modifyAdSpinner.selectedItem.toString()
-        dao.modifyAd(key, title, description, price, city, category)
+
+        when {
+            title.length in 3..100 -> {
+                binding.modifyAdTitle.error = "A cím hossza min. 3 és max. 100 karakter!"
+            }
+            description.length in 10..500 -> {
+                binding.modifyAdDesc.error = "A leírás hossza min. 10 és max. 400 karakter!"
+            }
+            price.isEmpty() -> {
+                binding.modifyAdPrice.error = "Adja meg az árat!"
+            }
+            city.isEmpty() -> {
+                binding.modifyAdCity.error = "Adja meg a települést!"
+            }
+            else -> {
+                dao.modifyAd(key, title, description, price, city, category)
+            }
+        }
     }
 }
