@@ -5,22 +5,22 @@
     <group android:checkableBehavior="single">
         <item android:id="@+id/nav_login"
             android:icon="@drawable/ic_login"
-            android:title="Bejelentkezés" />
+            android:title="@string/log_in" />
 
         <item android:id="@+id/nav_ads"
             android:icon="@drawable/ic_ads"
-            android:title="Hirdetések" />
+            android:title="@string/ads" />
 
         <item android:id="@+id/nav_my_ads"
             android:icon="@drawable/ic_my_ads"
-            android:title="Hirdetéseim" />
+            android:title="@string/my_ads" />
 
         <item android:id="@+id/nav_favourite_ads"
             android:icon="@drawable/ic_fav_ads"
-            android:title="Kedvenceim" />
+            android:title="@string/favourites" />
 
         <item android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
-            android:title="Kijelentkezés" />
+            android:title="@string/log_out" />
     </group>
 </menu>

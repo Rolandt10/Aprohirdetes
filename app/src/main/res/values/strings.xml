@@ -10,7 +10,6 @@
     <string name="title">Cím</string>
     <string name="description">Leírás</string>
     <string name="city">Település</string>
-    <string name="price">Ár</string>
     <string name="price_in_HUF">Ár: %s Ft</string>
 
     <string-array name="categories">
@@ -21,13 +20,34 @@
         <item>Üzlet, szolgáltatás</item>
         <item>Otthon, háztartás</item>
     </string-array>
-    <string name="title_activity_modify_ad">ModifyAdActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="header_title">Apróhirdetés alkalmazás</string>
+    <string name="category">kategória</string>
+    <string name="price">Ár</string>
+    <string name="remove">Töröl</string>
+    <string name="modify">Módosít</string>
+    <string name="register">Regisztrálok</string>
+    <string name="full_name">Teljes név</string>
+    <string name="registration">Regisztráció</string>
+    <string name="new_ad">Új hirdetés</string>
+    <string name="login">Belépek</string>
+    <string name="log_in">Bejelentkezés</string>
+    <string name="favoruite_ad_description">egy csillag a hirdetések mentésére</string>
+    <string name="save">Mentés</string>
+    <string name="modify_ad">Hirdetés módosítása</string>
+    <string name="details">Részletek</string>
+    <string name="ads">Hirdetések</string>
+    <string name="my_ads">Hirdetéseim</string>
+    <string name="favourites">Kedvenceim</string>
+    <string name="log_out">Kijelentkezés</string>
+    <string name="text_view_title">Cím:</string>
+    <string name="text_view_price">Ár:</string>
+    <string name="text_view_desc">Leírás:</string>
+    <string name="text_view_date">Dátum:</string>
+    <string name="text_view_city">Település:</string>
+    <string name="text_view_email">E-mail:</string>
+    <string name="text_view_phone_number">Telefonszám:</string>
+    <string name="text_view_category">Kategória:</string>
 </resources>

@@ -15,7 +15,7 @@
             android:id="@+id/textTitle"
             android:layout_width="257dp"
             android:layout_height="wrap_content"
-            android:text="cím"
+            android:text="@string/title"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +25,7 @@
             android:layout_width="257dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="kategória"
+            android:text="@string/category"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textTitle" />
@@ -35,14 +35,14 @@
             android:layout_width="142dp"
             android:layout_height="27dp"
             android:gravity="end"
-            android:text="Ár"
+            android:text="@string/price"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/favouriteButton"
-            android:text="Törlés"
+            android:text="@string/remove"
             android:layout_width="43dp"
             android:layout_height="38dp"
             android:layout_marginTop="4dp"
