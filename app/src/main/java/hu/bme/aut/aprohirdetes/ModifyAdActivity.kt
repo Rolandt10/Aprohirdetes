@@ -67,10 +67,10 @@ class ModifyAdActivity : AppCompatActivity() {
         val category = binding.modifyAdSpinner.selectedItem.toString()
 
         when {
-            title.length in 3..100 -> {
+            title.length < 3 && title.length > 100 -> {
                 binding.modifyAdTitle.error = "A cím hossza min. 3 és max. 100 karakter!"
             }
-            description.length in 10..500 -> {
+            description.length < 10 && description.length > 500 -> {
                 binding.modifyAdDesc.error = "A leírás hossza min. 10 és max. 400 karakter!"
             }
             price.isEmpty() -> {
