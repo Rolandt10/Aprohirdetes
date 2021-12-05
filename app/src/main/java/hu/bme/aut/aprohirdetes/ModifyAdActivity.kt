@@ -9,7 +9,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import hu.bme.aut.aprohirdetes.dao.DAOAd
 import hu.bme.aut.aprohirdetes.databinding.ActivityModifyAdBinding
-import hu.bme.aut.aprohirdetes.databinding.ActivityNewAdBinding
 import hu.bme.aut.aprohirdetes.models.Ad
 
 class ModifyAdActivity : AppCompatActivity() {
@@ -38,7 +37,7 @@ class ModifyAdActivity : AppCompatActivity() {
         }
     }
 
-    fun loadAndSetData() {
+    private fun loadAndSetData() {
         val extras = intent.extras
         key = extras?.getString("key") ?: ""
         Log.w("TAG", key)
@@ -55,12 +54,12 @@ class ModifyAdActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Log.w("TAG", databaseError.message.toString())
+                Log.w("TAG", databaseError.message)
             }
         })
     }
 
-    fun modifyAd() {
+    private fun modifyAd() {
         val title = binding.modifyAdTitle.text.toString()
         val description = binding.modifyAdDesc.text.toString()
         val price = binding.modifyAdPrice.text.toString()

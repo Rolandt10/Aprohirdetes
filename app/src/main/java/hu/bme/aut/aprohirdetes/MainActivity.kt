@@ -10,7 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
@@ -25,7 +25,6 @@ import hu.bme.aut.aprohirdetes.fragments.AdsFragment
 import hu.bme.aut.aprohirdetes.fragments.FavouriteAdsFragment
 import hu.bme.aut.aprohirdetes.fragments.LoginFragment
 import hu.bme.aut.aprohirdetes.fragments.MyAdsFragment
-import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawer : DrawerLayout
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val view = binding.root
         setContentView(view)
 
-        var toolbar : Toolbar = binding.toolbar
+        val toolbar : Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
 
         drawer = binding.drawerLayout
@@ -74,11 +73,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             tvEmail.isVisible = true
             tvName.isVisible = true
             tvTitle.isVisible = false
-            tvEmail.setText(firebaseUser.email)
+            tvEmail.text = firebaseUser.email
             dao.getUserData(firebaseUser.uid).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    var map: Map<String, Any?>? = dataSnapshot.getValue() as Map<String, Any?>?
-                    tvName.setText(map?.get("name").toString())
+                    val map: Map<String, Any?>? = dataSnapshot.getValue() as Map<String, Any?>?
+                    tvName.text = map?.get("name").toString()
                     Log.w("TAG", map?.get("name").toString())
                 }
 
@@ -86,19 +85,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     Log.w("TAG", databaseError.message)
                 }
             })
-            navigationView.menu.findItem(R.id.nav_login).setVisible(false)
-            navigationView.menu.findItem(R.id.nav_favourite_ads).setVisible(true)
-            navigationView.menu.findItem(R.id.nav_my_ads).setVisible(true)
-            navigationView.menu.findItem(R.id.nav_logout).setVisible(true)
+            navigationView.menu.findItem(R.id.nav_login).isVisible = false
+            navigationView.menu.findItem(R.id.nav_favourite_ads).isVisible = true
+            navigationView.menu.findItem(R.id.nav_my_ads).isVisible = true
+            navigationView.menu.findItem(R.id.nav_logout).isVisible = true
             navigationView.invalidate()
         } else {
             tvEmail.isVisible = false
             tvName.isVisible = false
             tvTitle.isVisible = true
-            navigationView.menu.findItem(R.id.nav_logout).setVisible(false)
-            navigationView.menu.findItem(R.id.nav_favourite_ads).setVisible(false)
-            navigationView.menu.findItem(R.id.nav_my_ads).setVisible(false)
-            navigationView.menu.findItem(R.id.nav_login).setVisible(true)
+            navigationView.menu.findItem(R.id.nav_logout).isVisible = false
+            navigationView.menu.findItem(R.id.nav_favourite_ads).isVisible = false
+            navigationView.menu.findItem(R.id.nav_my_ads).isVisible = false
+            navigationView.menu.findItem(R.id.nav_login).isVisible = true
             navigationView.invalidate()
         }
         navigationView.setNavigationItemSelectedListener(this)

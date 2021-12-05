@@ -70,7 +70,7 @@ class AdsFragment : Fragment(R.layout.fragment_ads) {
      * (Annak érdekében, hogy ne jelenjenek meg a már meglévő hirdetések többször.)
      * A lekérdezett adatokat hozzáadja a listákhoz.
      */
-    fun loadData() {
+    private fun loadData() {
         dao.getAllAds().addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 ads.clear()

@@ -3,7 +3,6 @@ package hu.bme.aut.aprohirdetes.adapter
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -37,9 +36,9 @@ class FavAdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableL
      * részeleteket.
      */
     override fun onBindViewHolder(holder: AdViewHolder, position: Int) {
-        val title = ads.get(position)?.title.toString()
-        val category = ads.get(position)?.category.toString()
-        val price = ads.get(position)?.price.toString()
+        val title = ads[position]?.title.toString()
+        val category = ads[position]?.category.toString()
+        val price = ads[position]?.price.toString()
 
         holder.textViewTitle.text = title
         holder.textViewCategory.text = category
@@ -68,13 +67,13 @@ class FavAdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableL
 
         holder.adItem.setOnClickListener {
             val intent = Intent(context, DetailsActivity::class.java)
-            intent.putExtra("key", keys.get(position))
+            intent.putExtra("key", keys[position])
             context.startActivity(intent)
         }
 
-        holder.textViewFavourite.setOnClickListener {
+        holder.imageButtonFavourite.setOnClickListener {
             val dao = DAOAd(context)
-            dao.deleteFavouriteAd(keys.get(position))
+            dao.deleteFavouriteAd(keys[position])
         }
     }
 

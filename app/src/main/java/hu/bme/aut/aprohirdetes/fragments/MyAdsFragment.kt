@@ -52,7 +52,7 @@ class MyAdsFragment : Fragment(R.layout.fragment_my_ads) {
         return binding.root
     }
 
-    fun loadData() {
+    private fun loadData() {
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         val user: FirebaseUser? = auth.currentUser
 

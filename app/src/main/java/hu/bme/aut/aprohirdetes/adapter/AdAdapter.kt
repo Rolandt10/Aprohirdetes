@@ -3,10 +3,14 @@ package hu.bme.aut.aprohirdetes.adapter
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.provider.Settings.Global.getString
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import hu.bme.aut.aprohirdetes.DetailsActivity
 import hu.bme.aut.aprohirdetes.models.Ad
 import hu.bme.aut.aprohirdetes.ViewHolder.AdViewHolder
@@ -37,9 +41,9 @@ class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList
      * részeleteket.
      */
     override fun onBindViewHolder(holder: AdViewHolder, position: Int) {
-        val title = ads.get(position)?.title.toString()
-        val category = ads.get(position)?.category.toString()
-        val price = ads.get(position)?.price.toString()
+        val title = ads[position]?.title.toString()
+        val category = ads[position]?.category.toString()
+        val price = ads[position]?.price.toString()
 
         holder.textViewTitle.text = title
         holder.textViewCategory.text = category
@@ -68,13 +72,33 @@ class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList
 
         holder.adItem.setOnClickListener {
             val intent = Intent(context, DetailsActivity::class.java)
-            intent.putExtra("key", keys.get(position))
+            intent.putExtra("key", keys[position])
             context.startActivity(intent)
         }
 
-        holder.textViewFavourite.setOnClickListener {
+        holder.imageButtonFavourite.setOnClickListener {
+            val user = FirebaseAuth.getInstance().currentUser
             val dao = DAOAd(context)
-            dao.addFavouriteAd(keys.get(position), ads.get(position))
+            dao.getAd(keys[position]).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    Log.w("tag", dataSnapshot.toString())
+                    val map: Map<String, Any?> = dataSnapshot.getValue() as Map<String, Any?>
+                    if (map.containsKey("favouriteAds")) {
+                        val users: Map<String, Any?> = map?.get("favouriteAds") as Map<String, Any?>
+                        if (users.containsKey(user?.uid ?: "")) {
+                            holder.imageButtonFavourite.setImageResource(R.drawable.ic_favourite)
+                            dao.deleteFavouriteAd(keys[position])
+                        }
+                    } else {
+                        holder.imageButtonFavourite.setImageResource(R.drawable.ic_favourite_full)
+                        dao.addFavouriteAd(keys[position], ads[position])
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+
+                }
+            })
         }
     }
 

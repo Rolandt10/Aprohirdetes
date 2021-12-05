@@ -3,7 +3,6 @@ package hu.bme.aut.aprohirdetes
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import hu.bme.aut.aprohirdetes.dao.DAOAd
 import hu.bme.aut.aprohirdetes.databinding.ActivityNewAdBinding
 

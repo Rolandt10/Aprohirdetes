@@ -8,7 +8,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import hu.bme.aut.aprohirdetes.dao.DAOAd
 import hu.bme.aut.aprohirdetes.databinding.ActivityDetailsBinding
-import hu.bme.aut.aprohirdetes.databinding.ActivityMainBinding
 import hu.bme.aut.aprohirdetes.models.Ad
 
 class DetailsActivity : AppCompatActivity() {
@@ -23,7 +22,7 @@ class DetailsActivity : AppCompatActivity() {
         loadAndSetData()
     }
 
-    fun loadAndSetData() {
+    private fun loadAndSetData() {
         val dao = DAOAd(applicationContext)
         val extras = intent.extras
         val key = extras?.getString("key") ?: ""

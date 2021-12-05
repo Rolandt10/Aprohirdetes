@@ -1,7 +1,6 @@
 package hu.bme.aut.aprohirdetes.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import hu.bme.aut.aprohirdetes.R
-import hu.bme.aut.aprohirdetes.adapter.AdAdapter
 import hu.bme.aut.aprohirdetes.adapter.FavAdAdapter
 import hu.bme.aut.aprohirdetes.dao.DAOAd
 import hu.bme.aut.aprohirdetes.databinding.FragmentFavAdsBinding
@@ -53,22 +50,22 @@ class FavouriteAdsFragment : Fragment(R.layout.fragment_fav_ads) {
         return binding.root
     }
 
-    fun loadAds() {
+    private fun loadAds() {
         val user = auth.currentUser
         dao.getAllAds().addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 ads.clear()
                 keys.clear()
                 for (ad in dataSnapshot.children) {
-                    var map: Map<String, Any?> = ad.getValue() as Map<String, Any?>
+                    val map: Map<String, Any?> = ad.getValue() as Map<String, Any?>
                     if (map.containsKey("favouriteAds")) {
-                        var users: Map<String, Any?> = map?.get("favouriteAds") as Map<String, Any?>
+                        val users: Map<String, Any?> = map["favouriteAds"] as Map<String, Any?>
                         if (users.containsKey(user?.uid ?: "")) {
-                            val favAd = Ad(map.get("uid").toString(), map.get("title").toString(),
-                                map.get("description").toString(), map.get("price").toString(),
-                                map.get("city").toString(), map.get("createdAt").toString(),
-                                map.get("email").toString(), map.get("phoneNumber").toString(),
-                                map.get("category").toString())
+                            val favAd = Ad(map["uid"].toString(), map["title"].toString(),
+                                map["description"].toString(), map["price"].toString(),
+                                map["city"].toString(), map["createdAt"].toString(),
+                                map["email"].toString(), map["phoneNumber"].toString(),
+                                map["category"].toString())
                             ads.add(favAd)
                             keys.add(ad.key ?: "")
                         }
