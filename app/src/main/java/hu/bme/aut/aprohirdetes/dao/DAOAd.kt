@@ -14,6 +14,7 @@ import java.util.Locale
 /**
  * Egy Data Access Object, amivel elérjük a backend tárolt adatokat.
  */
+@Suppress("UNCHECKED_CAST")
 class DAOAd(var context: Context?) {
     private var dbRef: DatabaseReference
     private var auth: FirebaseAuth

@@ -26,6 +26,7 @@ import hu.bme.aut.aprohirdetes.fragments.FavouriteAdsFragment
 import hu.bme.aut.aprohirdetes.fragments.LoginFragment
 import hu.bme.aut.aprohirdetes.fragments.MyAdsFragment
 
+@Suppress("UNCHECKED_CAST")
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawer : DrawerLayout
     private lateinit var binding : ActivityMainBinding

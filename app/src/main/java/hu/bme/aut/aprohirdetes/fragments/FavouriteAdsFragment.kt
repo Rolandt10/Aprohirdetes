@@ -17,6 +17,7 @@ import hu.bme.aut.aprohirdetes.dao.DAOAd
 import hu.bme.aut.aprohirdetes.databinding.FragmentFavAdsBinding
 import hu.bme.aut.aprohirdetes.models.Ad
 
+@Suppress("UNCHECKED_CAST")
 class FavouriteAdsFragment : Fragment(R.layout.fragment_fav_ads) {
     private lateinit var binding: FragmentFavAdsBinding
     private lateinit var recyclerView: RecyclerView

@@ -12,4 +12,3 @@ data class Ad(val uid: String? = null,
               val email: String? = null,
               val phoneNumber: String? = null,
               val category: String? = null)
-{ }
