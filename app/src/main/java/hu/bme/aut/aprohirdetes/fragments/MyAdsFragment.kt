@@ -35,6 +35,9 @@ class MyAdsFragment : Fragment(R.layout.fragment_my_ads) {
 
         binding = FragmentMyAdsBinding.inflate(inflater, container, false)
 
+        /**
+         * Új hirdetés létrehozása.
+         */
         binding.newAdButton.setOnClickListener {
             (activity as MainActivity?)?.openNewAd()
         }
@@ -53,6 +56,10 @@ class MyAdsFragment : Fragment(R.layout.fragment_my_ads) {
         return binding.root
     }
 
+    /**
+     * Lekérdezi a bejelentkezett felhasználó hirdetéseit. Ha nincs, akkor egy
+     * üzenetet jelenít meg.
+     */
     private fun loadData() {
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         val user: FirebaseUser? = auth.currentUser

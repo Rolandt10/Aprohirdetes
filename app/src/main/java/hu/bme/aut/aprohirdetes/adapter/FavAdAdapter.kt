@@ -65,12 +65,19 @@ class FavAdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableL
             }
         }
 
+        /**
+         * A hirdetés részleteinek megtekintése. Átadásra kerül a details activity-nek
+         * a hirdetés kulcsa, így az le tudja kérdezni annak részleteit.
+         */
         holder.adItem.setOnClickListener {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra("key", keys[position])
             context.startActivity(intent)
         }
 
+        /**
+         * Egy kedvenc hirdetés törlése.
+         */
         holder.imageButtonFavourite.setOnClickListener {
             val dao = DAOAd(context)
             dao.deleteFavouriteAd(keys[position])

@@ -52,6 +52,10 @@ class FavouriteAdsFragment : Fragment(R.layout.fragment_fav_ads) {
         return binding.root
     }
 
+    /**
+     * Lekérdezi a bejelentkezett felhasználó kedvenc hirdetéseit. Ha nincs kedvenc hirdetés,
+     * akkor kiír egy üzenetet.
+     */
     private fun loadAds() {
         val user = auth.currentUser
         dao.getAllAds().addValueEventListener(object : ValueEventListener {

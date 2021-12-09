@@ -11,6 +11,7 @@
     <string name="description">Leírás</string>
     <string name="city">Település</string>
     <string name="price_in_HUF">Ár: %s Ft</string>
+    <string name="price_in_HUF_only_price">%s Ft</string>
 
     <string-array name="categories">
         <item>Álláskeresés, állásajánlat</item>

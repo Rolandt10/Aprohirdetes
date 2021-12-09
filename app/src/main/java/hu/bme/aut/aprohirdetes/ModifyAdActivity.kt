@@ -37,10 +37,13 @@ class ModifyAdActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Lekérdezi a módosítani kívánt hirdetés adatait és beállítja az EditText-ek szövegét
+     * ennek megfelelően.
+     */
     private fun loadAndSetData() {
         val extras = intent.extras
         key = extras?.getString("key") ?: ""
-        Log.w("TAG", key)
 
         dao.getAd(key).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -59,6 +62,9 @@ class ModifyAdActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * Beállítja a backend a módosításokat.
+     */
     private fun modifyAd() {
         val title = binding.modifyAdTitle.text.toString()
         val description = binding.modifyAdDesc.text.toString()

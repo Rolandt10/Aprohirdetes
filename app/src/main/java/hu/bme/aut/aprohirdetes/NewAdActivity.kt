@@ -16,6 +16,9 @@ class NewAdActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        /**
+         * A kategória megadásához szükséges spinner.
+         */
         val spinner = binding.spinner
         val adapter = ArrayAdapter.createFromResource(applicationContext, R.array.categories, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -23,6 +26,9 @@ class NewAdActivity : AppCompatActivity() {
 
         val dao = DAOAd(applicationContext)
 
+        /**
+         * Új hirdetés mentése.
+         */
         binding.saveNewAdButton.setOnClickListener {
             val title = binding.titleText.text.toString()
             val description = binding.descriptionText.text.toString()

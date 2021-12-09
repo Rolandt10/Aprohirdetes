@@ -25,10 +25,18 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
+        /**
+         * Áttérés a regisztráció fragment-re
+         */
         binding.registrationTextView.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, RegistrationFragment())?.commitNow()
         }
 
+        /**
+         * Bejelentkezteti a felhasználót, ha az e-mail és a jelszó nem üres.
+         * Sikeres bejelentkezéskor átnavigál a hirdetések fragment-re, továbbá
+         * frissíti a NavigationView-t (bejelentkezett/kijelentkezett felhasználó más-más menüt lát).
+         */
         binding.loginButton.setOnClickListener {
             val email = binding.emailAddress.text.toString()
             val password = binding.password.text.toString()

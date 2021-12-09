@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val view = binding.root
         setContentView(view)
 
+        /**
+         * Toolbar beállítása.
+         */
         val toolbar : Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
 
@@ -55,6 +58,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, AdsFragment()).commit()
     }
 
+    /**
+     * A NavigationView frissítése annak megfelelően, hogy a felhasználó be van-e jelentkezve.
+     */
     fun updateNav() {
         navigationView = binding.navView
         firebaseAuth = FirebaseAuth.getInstance()
@@ -69,6 +75,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             tvName.isVisible = true
             tvTitle.isVisible = false
             tvEmail.text = firebaseUser.email
+            /**
+             * A bejelentkezett felhasználó neve és e-mail címének megjelenítése a header-ben.
+             */
             dao.getUserData(firebaseUser.uid).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val map: Map<String, Any?>? = dataSnapshot.value as Map<String, Any?>?
@@ -98,6 +107,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
     }
 
+    /**
+     * A billentyűzet elrejtése.
+     */
     fun hideKeyboard() {
         this.currentFocus?.let { view ->
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager

@@ -31,7 +31,7 @@ class DetailsActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val ad = dataSnapshot.getValue(Ad::class.java)
                 binding.detailsAdTitle.text = ad?.title.toString()
-                binding.detailsAdPrice.text = applicationContext.getString(R.string.price_in_HUF, ad?.price.toString())
+                binding.detailsAdPrice.text = applicationContext.getString(R.string.price_in_HUF_only_price, ad?.price.toString())
                 binding.detailsAdDesc.text = ad?.description.toString()
                 binding.detailsCreatedAt.text = ad?.createdAt.toString()
                 binding.detailsAdCity.text = ad?.city.toString()

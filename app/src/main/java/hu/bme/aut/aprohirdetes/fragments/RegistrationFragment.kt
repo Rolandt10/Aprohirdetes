@@ -32,12 +32,18 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
+        /**
+         * Login activity-re navigálás.
+         */
         binding.textView3.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, LoginFragment())?.commitNow()
         }
 
         dao = DAOAd(context)
 
+        /**
+         * A felhasználó beregisztrálása.
+         */
         binding.registerButton.setOnClickListener {
 
             val fullName = binding.registrationName.text.toString()
