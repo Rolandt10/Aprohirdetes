@@ -86,6 +86,10 @@ class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList
 
             setFavouriteButton(keys[position], holder)
 
+            /**
+             * Ha felhasználó azonosítója szerepel egy hirdetéshez tartozó kedvenc felhasználók között,
+             * akkor a kedvenc gombra kattinta törölni fog, míg a másik esetben hozzáadni.
+             */
             holder.imageButtonFavourite.setOnClickListener {
                 val user = FirebaseAuth.getInstance().currentUser
                 val dao = DAOAd(context)
@@ -117,6 +121,10 @@ class AdAdapter(private val ads: MutableList<Ad?>, private val keys: MutableList
         return ads.size
     }
 
+    /**
+     * Először lekérdezi, hogy az adott felhasználó kedvencei között van-e az adott
+     * hirdetés. Ha igen, akkor ennek megfelelően jelenik meg a kedvencek gomb.
+     */
     private fun setFavouriteButton(adKey: String, holder: AdViewHolder) {
         val user = FirebaseAuth.getInstance().currentUser
         val dao = DAOAd(context)
