@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -66,6 +67,11 @@ class MyAdsFragment : Fragment(R.layout.fragment_my_ads) {
                         myAds.add(newAd)
                         keys.add(ad.key ?: "")
                     }
+                }
+                if (myAds.isEmpty()) {
+                    binding.noAdTextView.isVisible = true
+                } else {
+                    binding.noAdTextView.isVisible = false
                 }
                 recyclerView.adapter?.notifyDataSetChanged()
             }
