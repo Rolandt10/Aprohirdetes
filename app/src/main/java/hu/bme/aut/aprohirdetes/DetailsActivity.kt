@@ -31,14 +31,14 @@ class DetailsActivity : AppCompatActivity() {
         dao.getAd(key).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val ad = dataSnapshot.getValue(Ad::class.java)
-                binding.modifyAdTitle.text = ad?.title.toString()
-                binding.modifyAdPrice.text = ad?.price.toString()
-                binding.modifyAdDesc.text = ad?.description.toString()
-                binding.createdAt.text = ad?.createdAt.toString()
-                binding.modifyAdCity.text = ad?.city.toString()
-                binding.email.text = ad?.email.toString()
+                binding.detailsAdTitle.text = ad?.title.toString()
+                binding.detailsAdPrice.text = ad?.price.toString()
+                binding.detailsAdDesc.text = ad?.description.toString()
+                binding.detailsCreatedAt.text = ad?.createdAt.toString()
+                binding.detailsAdCity.text = ad?.city.toString()
+                binding.detailsEmail.text = ad?.email.toString()
                 binding.detailsAdPhone.text = ad?.phoneNumber.toString()
-                binding.category.text = ad?.category.toString()
+                binding.detailsCategory.text = ad?.category.toString()
                 Log.w("TAG", ad.toString())
             }
 

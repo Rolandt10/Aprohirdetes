@@ -71,6 +71,9 @@ class FavouriteAdsFragment : Fragment(R.layout.fragment_fav_ads) {
                             keys.add(ad.key ?: "")
                         }
                     }
+                    if (ads.isEmpty()) {
+                        
+                    }
                 }
                 recyclerView.adapter?.notifyDataSetChanged()
             }

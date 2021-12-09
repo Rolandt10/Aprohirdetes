@@ -7,7 +7,7 @@
     tools:context=".DetailsActivity">
 
     <TextView
-        android:id="@+id/modifyAdDesc"
+        android:id="@+id/detailsAdDesc"
         android:layout_width="316dp"
         android:layout_height="121dp"
         android:layout_marginStart="24dp"
@@ -15,33 +15,36 @@
         android:layout_marginEnd="24dp"
         android:background="#54FF9800"
         android:textSize="20sp"
+        android:scrollbars = "vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.17"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
-        android:id="@+id/modifyAdTitle"
+        android:id="@+id/detailsAdTitle"
         android:layout_width="253dp"
         android:layout_height="31dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:scrollbars = "vertical"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
-        android:id="@+id/modifyAdPrice"
+        android:id="@+id/detailsAdPrice"
         android:layout_width="255dp"
         android:layout_height="29dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:scrollbars = "vertical"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/modifyAdTitle" />
 
     <TextView
-        android:id="@+id/createdAt"
+        android:id="@+id/detailsCreatedAt"
         android:layout_width="246dp"
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
@@ -51,9 +54,10 @@
         app:layout_constraintTop_toBottomOf="@+id/modifyAdDesc" />
 
     <TextView
-        android:id="@+id/modifyAdCity"
+        android:id="@+id/detailsAdCity"
         android:layout_width="225dp"
         android:layout_height="31dp"
+        android:scrollbars = "vertical"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:textSize="20sp"
@@ -61,10 +65,11 @@
         app:layout_constraintTop_toBottomOf="@+id/createdAt" />
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/detailsEmail"
         android:layout_width="225dp"
         android:layout_height="31dp"
         android:layout_marginStart="16dp"
+        android:scrollbars = "vertical"
         android:layout_marginTop="16dp"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView12"
@@ -74,6 +79,7 @@
         android:id="@+id/detailsAdPhone"
         android:layout_width="225dp"
         android:layout_height="31dp"
+        android:scrollbars = "vertical"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:textSize="20sp"
@@ -81,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <TextView
-        android:id="@+id/category"
+        android:id="@+id/detailsCategory"
         android:layout_width="225dp"
         android:layout_height="31dp"
         android:layout_marginStart="16dp"
@@ -112,7 +118,7 @@
         android:textColor="#FF9800"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modifyAdTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsAdTitle" />
 
     <TextView
         android:id="@+id/textView9"
@@ -124,7 +130,7 @@
         android:textColor="#FF9800"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modifyAdPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsAdPrice" />
 
     <TextView
         android:id="@+id/textView10"
@@ -136,7 +142,7 @@
         android:textColor="#FF9800"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modifyAdDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsAdDesc" />
 
     <TextView
         android:id="@+id/textView11"
@@ -148,7 +154,7 @@
         android:textColor="#FF9800"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createdAt" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsCreatedAt" />
 
     <TextView
         android:id="@+id/textView12"
@@ -160,7 +166,7 @@
         android:textColor="#FF9800"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modifyAdCity" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsAdCity" />
 
     <TextView
         android:id="@+id/textView2"
@@ -172,7 +178,7 @@
         android:textColor="#FF9800"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsEmail" />
 
     <TextView
         android:id="@+id/textView13"
