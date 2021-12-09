@@ -41,7 +41,7 @@
         android:scrollbars = "vertical"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/modifyAdTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsAdTitle" />
 
     <TextView
         android:id="@+id/detailsCreatedAt"
@@ -51,7 +51,7 @@
         android:layout_marginTop="16dp"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/modifyAdDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsAdDesc" />
 
     <TextView
         android:id="@+id/detailsAdCity"
@@ -62,7 +62,7 @@
         android:layout_marginTop="16dp"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/createdAt" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsCreatedAt" />
 
     <TextView
         android:id="@+id/detailsEmail"
@@ -73,7 +73,7 @@
         android:layout_marginTop="16dp"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/modifyAdCity" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsAdCity" />
 
     <TextView
         android:id="@+id/detailsAdPhone"
@@ -84,7 +84,7 @@
         android:layout_marginTop="16dp"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsEmail" />
 
     <TextView
         android:id="@+id/detailsCategory"

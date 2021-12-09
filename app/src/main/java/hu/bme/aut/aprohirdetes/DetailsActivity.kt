@@ -26,13 +26,12 @@ class DetailsActivity : AppCompatActivity() {
         val dao = DAOAd(applicationContext)
         val extras = intent.extras
         val key = extras?.getString("key") ?: ""
-        Log.w("TAG", key)
 
         dao.getAd(key).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val ad = dataSnapshot.getValue(Ad::class.java)
                 binding.detailsAdTitle.text = ad?.title.toString()
-                binding.detailsAdPrice.text = ad?.price.toString()
+                binding.detailsAdPrice.text = applicationContext.getString(R.string.price_in_HUF, ad?.price.toString())
                 binding.detailsAdDesc.text = ad?.description.toString()
                 binding.detailsCreatedAt.text = ad?.createdAt.toString()
                 binding.detailsAdCity.text = ad?.city.toString()
