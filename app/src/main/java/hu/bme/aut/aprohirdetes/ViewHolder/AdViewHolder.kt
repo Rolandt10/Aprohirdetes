@@ -15,7 +15,7 @@ class AdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var adItem: ViewGroup
 
     init {
-        imageButtonFavourite = itemView.findViewById(R.id.favouriteDeleteButton)
+        imageButtonFavourite = itemView.findViewById(R.id.favButton)
         textViewTitle = itemView.findViewById(R.id.textTitle)
         textViewCategory = itemView.findViewById(R.id.textCategory)
         textViewPrice = itemView.findViewById(R.id.textPrice)

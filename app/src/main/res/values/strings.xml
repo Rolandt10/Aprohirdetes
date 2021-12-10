@@ -51,4 +51,5 @@
     <string name="text_view_email">E-mail:</string>
     <string name="text_view_phone_number">Telefonszám:</string>
     <string name="text_view_category">Kategória:</string>
+    <string name="no_fav_ads">Jelenleg nincsenek kedvenc hirdetéseid!</string>
 </resources>

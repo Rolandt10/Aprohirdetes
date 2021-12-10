@@ -42,7 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageButton
-            android:id="@+id/favouriteDeleteButton"
+            android:id="@+id/favButton"
             android:contentDescription="@string/favoruite_ad_description"
             android:layout_width="43dp"
             android:layout_height="38dp"
