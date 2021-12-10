@@ -133,6 +133,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_login -> {
+                hideKeyboard()
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LoginFragment()).commit()
             }
             R.id.nav_logout -> {
@@ -141,13 +142,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LoginFragment()).commit()
             }
             R.id.nav_ads -> {
+                hideKeyboard()
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, AdsFragment()).commit()
             }
 
             R.id.nav_my_ads -> {
+                hideKeyboard()
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, MyAdsFragment()).commit()
             }
             R.id.nav_favourite_ads -> {
+                hideKeyboard()
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, FavouriteAdsFragment()).commit()
             }
         }
