@@ -27,4 +27,9 @@
     <style name="Theme.Aprohirdetes.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Aprohirdetes.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">#FF5722</item>
+    </style>
+
 </resources>

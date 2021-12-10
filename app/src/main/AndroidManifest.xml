@@ -13,16 +13,16 @@
         android:theme="@style/Theme.Aprohirdetes">
         <activity
             android:name=".ModifyAdActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".DetailsActivity"
-            android:exported="true" />
-        <activity
-            android:name=".AdActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".NewAdActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
